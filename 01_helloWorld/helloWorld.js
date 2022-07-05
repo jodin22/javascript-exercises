@@ -2,7 +2,7 @@ const helloWorld = function() {
   return 'Hello, World!';
 };
 
-export default helloWorld;
+module.exports = helloWorld;
 
 // module.exports = helloWorld; original?  
 
