@@ -61,7 +61,8 @@ repeatString();
 
 */
 
-// seems to work, test some more before moving on to the next hw
+// the below to line 77 is passing to the function using a variable for both values.
+
 const word = 'hey';
 let number = parseInt(prompt('Enter a number', '3'));
 let result = '';
@@ -69,11 +70,25 @@ let result = '';
 function repeatString(word, number) {
     for(let i = 1; i <= number; i++) {
         result += `${word}`; // result = result + word
-        alert(result);
+        console.log(result);
     }
 }
 
-repeatString(word, number);
+repeatString(word, number); 
 
+// the below to line 92 is passing to the function using a string and a variable. the 'hey' is not 
+// being passed via a variable. but the number is being passed using a variable.
+/*
+let number = parseInt(prompt('Enter a number', '3'));
+let result = '';
+
+function repeatString(word, number) {
+    for(let i = 1; i <= number; i++) {
+        result += `${word}`; // result = result + word
+        console.log(result);
+    }
+}
+
+repeatString('hey', number); */
 
 
