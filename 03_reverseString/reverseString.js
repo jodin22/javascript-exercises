@@ -33,17 +33,32 @@ console.log(count); // this shows 11. remember it counts from 0 to 10 and includ
 
 console.log(originalString[0]); // first letter
 console.log(originalString[count-1]); // last letter
+let newString = ''; // blank for now. it will hold each new letter concatenated to the previous letter
 
-for(let i = 0; i <= 10; i++){  // this prints each letter on a separate line going forwards
+for(let i = 0; i <= originalString.length - 1; i++){  // this prints each letter on a separate line going forwards
     console.log(originalString);
-    console.log(originalString[i]);
+    let individualLetter = originalString[i];
+    console.log(individualLetter);
+    newString += individualLetter;
+    console.log(newString);
 }
 
-for(let i = 10; i >= 0; i--){ // this prints each letter on a separate line going backwards
-    console.log(originalString);
-    console.log(originalString[i]);
+function reverseString(originalString) {
+    let newStringBackwards = ''; // blank for now. it will hold each new letter concatenated to the 
+// previous letter
+    for(let i = originalString.length - 1; i >= 0; i--){ // this prints each letter on a separate line going backwards
+        console.log(originalString);
+        let individualLetter = originalString[i];
+        console.log(individualLetter);
+        newStringBackwards += individualLetter;
+        console.log(newStringBackwards);
+    }
 }
 
-// make an empty variable. then put each letter in it and concatenate along with accumulation
-// letter = letter + new aka letter += new
+reverseString('awesome possum'); // here you are passing a string instead of the value of the 
+// variable from line 21 which is 'hello there'. if you were to remove the string and use the 
+// variable name of originalString, then it will use 'hello there'
+
+reverseString(originalString);
+
 
