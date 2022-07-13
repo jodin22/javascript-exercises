@@ -31,8 +31,14 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
 const numbers = [1, 2, 3, 4];
+console.log(numbers); // displays the entire array
 let length = numbers.length;
 console.log(`array has ${length} items`);
+let itemToRemove = 3; // this is what you want to know the index of
+console.log(`item ${itemToRemove} will be removed`);
+let index = numbers.indexOf(itemToRemove); // use the index number to remove it from the array 
+// using a splice or slice or a similar method
+console.log(`index number ${index} will be removed`);
 
 // use numbers[0] numbers[1] etc to access each item in the array. also .length-1 is how you get
 // the last item
@@ -49,8 +55,26 @@ a 3 which is the item to be removed. the result will be 1, 2, 4.
 */
 
 for(const number of numbers) { // next step is to use a loop in combo with an array method
-    console.log(number); 
+    console.log(`array item ${number}`); 
 } /* for the last argument which is the one to be removed, do a test on each item to see if it 
 matches the one to be removed and use the pop() method? maybe pop is not good b/c it only removes
 the last item?
+// removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
+
 */
+
+function toMatch(number){ 
+    return number === 3
+}
+const match = numbers.filter(toMatch); // using filter() method while looping to only do an action on 
+// the item that matches. the filter method calls the toMatch function and returns the item that 
+// has a value of 3
+console.log(match);
+
+// if the item equals the thing to remove from removeFromArray(array name, thing to remove), then 
+// show a new array with all the items minus that one that was removed
+// the first parameter in removeFromArray will be the const numbers. this way it gets the entire array
+// the second parameter you will store in a variable that way the user can try different things 
+// to remove. see below for an example.
+
+
