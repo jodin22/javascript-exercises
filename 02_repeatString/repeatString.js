@@ -74,10 +74,11 @@ function repeatString(word, number) {
     }
 }
 
-repeatString(word, number); 
+repeatString(word, number);
 
-// the below to line 92 is passing to the function using a string and a variable. the 'hey' is not 
-// being passed via a variable. but the number is being passed using a variable.
+// the below to line 93 is passing to the function using a string and a variable. the 'hey' is not 
+// being passed via a variable. but the number is being passed using a variable. comment out the
+// lines 66 to 77 to avoid errors while testing the below
 /*
 let number = parseInt(prompt('Enter a number', '3'));
 let result = '';
@@ -89,6 +90,6 @@ function repeatString(word, number) {
     }
 }
 
-repeatString('hey', number); */
+repeatString('aww', number); */
 
 
