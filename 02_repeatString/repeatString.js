@@ -76,9 +76,20 @@ function repeatString(word, number) {
 
 repeatString(word, number);
 
-// the below to line 93 is passing to the function using a string and a variable. the 'hey' is not 
+// the below to line 103 is passing to the function using a string and a variable. the 'aww' is not 
 // being passed via a variable. but the number is being passed using a variable. comment out the
-// lines 66 to 77 to avoid errors while testing the below
+// lines 66 to 77 to avoid errors while testing the below 
+
+/* first time (lines 66 to 77) each value is passed to the function using a variable. that works.
+the second time, calling the same function (lines 94 to 104), the first value is passed as a string
+and not inside a variable. the second value is in a variable. it works somewhat. the output looks 
+unusual b/c the console.log of result still stores the previous times the loop ran. for ex, it will
+show heyheyhey for the first function call. then for the second call, it will show heyheyheyawwawwaww. 
+leave alone and move on. just comment out one block when you want to test the other block and vice
+versa.
+
+*/
+
 /*
 let number = parseInt(prompt('Enter a number', '3'));
 let result = '';
