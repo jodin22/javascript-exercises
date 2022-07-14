@@ -37,7 +37,7 @@ console.log(`array has ${length} items`);
 let itemToRemove = 3; // this is what you want to know the index of
 console.log(`item ${itemToRemove} will be removed`);
 let index = numbers.indexOf(itemToRemove); // use the index number to remove it from the array 
-// using a splice or slice or a similar method
+// using a splice or slice or a similar method. see lines 80 and below on how the splice works
 console.log(`index number ${index} will be removed`);
 
 // use numbers[0] numbers[1] etc to access each item in the array. also .length-1 is how you get
@@ -89,6 +89,7 @@ months.splice(2, 1);
 console.log(`third splice result is remove: ${months}`); // Jan, Feb, Apr, May
 
 /*  
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
 The splice() method changes the contents of an array by removing or replacing existing elements
 and/or adding new elements in place. 
 
