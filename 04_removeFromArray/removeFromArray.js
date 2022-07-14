@@ -69,7 +69,7 @@ function toMatch(number){
 const match = numbers.filter(toMatch); // using filter() method while looping to only do an action on 
 // the item that matches. the filter method calls the toMatch function and returns the item that 
 // has a value of 3
-console.log(match);
+console.log(`array loop filter item ${match}`);
 
 // if the item equals the thing to remove from removeFromArray(array name, thing to remove), then 
 // show a new array with all the items minus that one that was removed
@@ -77,4 +77,25 @@ console.log(match);
 // the second parameter you will store in a variable that way the user can try different things 
 // to remove. see below for an example.
 
+const months = ['Jan', 'Mar', 'Apr', 'Jun'];
+console.log(`orginal array ${months}`);
+months.splice(1, 0, 'Feb'); // starts at index 1 which is Mar. the 0 is remove no items.
+// Feb is added from the start of index 1.
+console.log(`first splice result is add: ${months}`); // Jan, Feb, Mar, Apr, Jun
+months.splice(4, 1, 'May'); // starts at index 4 which is Jun. 1 is to remove 1 item from the start
+// index 4. May is added from the start of index 4
+console.log(`second splice result is replace: ${months}`); // Jan, Feb, Mar, Apr, May
+months.splice(2, 1); 
+console.log(`third splice result is remove: ${months}`); // Jan, Feb, Apr, May
+
+/*  
+The splice() method changes the contents of an array by removing or replacing existing elements
+and/or adding new elements in place. 
+
+splice(start, deleteCount, item1, item2, etc). deleteCount and item1, item2 etc are optional
+
+start is the index number to start at. deleteCount is an integer indicating the number of items 
+to remove from start. item1, item2, etc are items to add to the array beginning from start.
+
+*/
 
