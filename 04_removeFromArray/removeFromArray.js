@@ -30,15 +30,48 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 */
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-const numbers = [1, 2, 3, 4];
+const numbers = [1, 2, 3, 4, 'hello', 'bye'];
 console.log(numbers); // displays the entire array
 let length = numbers.length;
 console.log(`array has ${length} items`);
-let itemToRemove = 3; // this is what you want to know the index of
-console.log(`item ${itemToRemove} will be removed`);
-let index = numbers.indexOf(itemToRemove); // use the index number to remove it from the array 
+// parseInt works for removing integers but not strings 
+// with no parseInt, it works for removing strings but not integers
+let userEntryInt = prompt('Enter the item to remove', 3); // this is what you want to know the index of
+console.log(`item ${userEntryInt} will be removed`); // when string, it shows NaN if you put parseInt
+// at the prompt
+
+/* if (userEntryInt === NaN) { // figure out how to check for NaN and Number and see if you can 
+    // find the index either way
+    let userEntryString = userEntryInt;
+    console.log(`item ${userEntryString} will be removed`);
+} */
+let index = numbers.indexOf(userEntryInt); // use the index number to remove it from the array 
+// let indexString = numbers.indexOf(userEntryString); 
 // using a splice or slice or a similar method. see lines 80 and below on how the splice works
-console.log(`index number ${index} will be removed`);
+console.log(`index number ${index} will be removed`); // when no parseInt is used a number shows index 
+//of -1. while a string shows the correct index. when parseInt is used, a number shows the correct index
+// but a string shows -1 
+// console.log(`index number ${indexString} will be removed`); // if -1 shows, then they entered an item 
+// not in the array and it will remove the -1 index which is the last item.
+
+if (index >= 0) { // for NaN, it is -1 and won't remove anything
+    numbers.splice(index, 1); // you need the >=0 or else the -1 index is used to remove the last 
+    // item and you don't want that. 
+    console.log(`resulting array ${numbers}`);
+}
+   /* else if (indexString >= 0) {
+    numbers.splice(indexString, 1);
+    console.log(`resulting array ${numbers}`);
+} */
+    else {
+    console.log(`${userEntryInt} doesn't exist`);
+    console.log(`resulting array unchanged: ${numbers}`);
+}
+
+/* numbers.splice(index, 1);  // line 39 is the index number which is the start. 1 is 1 item from 
+// the start. it will only remove the specified index number. 
+console.log(`resulting array ${numbers}`); // remaining items */
+
 
 // use numbers[0] numbers[1] etc to access each item in the array. also .length-1 is how you get
 // the last item
@@ -64,7 +97,7 @@ the last item?
 */
 
 function toMatch(number){ 
-    return number === 3
+    return number === 3 // similar to saying if number === 3 then return that number
 }
 const match = numbers.filter(toMatch); // using filter() method while looping to only do an action on 
 // the item that matches. the filter method calls the toMatch function and returns the item that 
@@ -95,7 +128,12 @@ and/or adding new elements in place.
 
 splice(start, deleteCount, item1, item2, etc). deleteCount and item1, item2 etc are optional
 
-start is the index number to start at. deleteCount is an integer indicating the number of items 
+start is the index number to start at. if start is a negative number then it starts from the end 
+of the array length. ex if splice(-1, 1) for an array of Jan, Feb, Mar, Apr, May. then it will 
+start at the end which is May and remove 1 item from the start which is May. the result will be 
+an array of Jan, Feb, Mar, Apr.
+
+deleteCount is an integer indicating the number of items 
 to remove from start. item1, item2, etc are items to add to the array beginning from start.
 
 */
