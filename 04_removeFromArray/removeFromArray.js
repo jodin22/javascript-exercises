@@ -30,30 +30,27 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 */
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-const numbers = [1, 2, 3, 4, 'hello', 'bye'];
+const numbers = [1, 2, 3, 4, 'hello', 'bye', 'later', 5, 6];
 console.log(numbers); // displays the entire array
 let length = numbers.length;
 console.log(`array has ${length} items`);
 // parseInt works for removing integers but not strings 
 // with no parseInt, it works for removing strings but not integers
 let userEntryInt = prompt('Enter the item to remove', 3); // this is what you want to know the index of
-console.log(`item ${userEntryInt} will be removed`); // when string, it shows NaN if you put parseInt
+// console.log(`item ${userEntryInt} will be removed`); // when string, it shows NaN if you put parseInt
 // at the prompt
 
-/* if (userEntryInt === NaN) { // figure out how to check for NaN and Number and see if you can 
-    // find the index either way
-    let userEntryString = userEntryInt;
-    console.log(`item ${userEntryString} will be removed`);
-} */
-let index = numbers.indexOf(userEntryInt); // use the index number to remove it from the array 
+
+// let index = numbers.indexOf(userEntryInt); // use the index number to remove it from the array 
 // let indexString = numbers.indexOf(userEntryString); 
-// using a splice or slice or a similar method. see lines 80 and below on how the splice works
-console.log(`index number ${index} will be removed`); // when no parseInt is used a number shows index 
+// using a splice or slice or a similar method. see below on how the splice works
+// console.log(`index number ${index} will be removed`); // when no parseInt is used a number shows index 
 //of -1. while a string shows the correct index. when parseInt is used, a number shows the correct index
 // but a string shows -1 
 // console.log(`index number ${indexString} will be removed`); // if -1 shows, then they entered an item 
 // not in the array and it will remove the -1 index which is the last item.
 
+/*
 if (index >= 0) { // for NaN, it is -1 and won't remove anything
     numbers.splice(index, 1); // you need the >=0 or else the -1 index is used to remove the last 
     // item and you don't want that. 
@@ -62,17 +59,17 @@ if (index >= 0) { // for NaN, it is -1 and won't remove anything
    /* else if (indexString >= 0) {
     numbers.splice(indexString, 1);
     console.log(`resulting array ${numbers}`);
-} */
+} */ /*
     else {
     console.log(`${userEntryInt} doesn't exist`);
     console.log(`resulting array unchanged: ${numbers}`);
-}
+    } */
 
 /* numbers.splice(index, 1);  // line 39 is the index number which is the start. 1 is 1 item from 
 // the start. it will only remove the specified index number. 
 console.log(`resulting array ${numbers}`); // remaining items */
 
-
+/*
 // use numbers[0] numbers[1] etc to access each item in the array. also .length-1 is how you get
 // the last item
 let someItem = numbers[0];
@@ -81,14 +78,18 @@ someItem = numbers[2];
 console.log(`third item is ${someItem}`); // shows third item
 someItem = numbers[length-1]; // for the last item
 console.log(`last item is ${someItem}`);
+*/
 
 /* line 32 has a function to receive all the array items as the first argument. the last argument is
 a 3 which is the item to be removed. the result will be 1, 2, 4.
 
 */
 
+let index;
 for(const number of numbers) { // next step is to use a loop in combo with an array method
-    console.log(`array item ${number}`); 
+    index = numbers.indexOf(number);
+    console.log(`array index ${index}`);
+    console.log(`array item ${number}`);
 } /* for the last argument which is the one to be removed, do a test on each item to see if it 
 matches the one to be removed and use the pop() method? maybe pop is not good b/c it only removes
 the last item?
@@ -96,13 +97,18 @@ the last item?
 
 */
 
+/*
 function toMatch(number){ 
-    return number === 3 // similar to saying if number === 3 then return that number
+    // return number === 3 // similar to saying if number === 3 then return that number
+    // if (number === 'hello') {
+    return number == userEntryInt;
+    // }
 }
 const match = numbers.filter(toMatch); // using filter() method while looping to only do an action on 
 // the item that matches. the filter method calls the toMatch function and returns the item that 
 // has a value of 3
 console.log(`array loop filter item ${match}`);
+*/
 
 // if the item equals the thing to remove from removeFromArray(array name, thing to remove), then 
 // show a new array with all the items minus that one that was removed
