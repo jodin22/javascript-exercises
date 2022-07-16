@@ -30,91 +30,72 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 */
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-const numbers = [1, 2, 3, 4, 'hello', 'bye', 'later', 5, 6];
+const numbers = [1, 2, 3, 4, 'hello', 'bye', '5', '6', 7];
 console.log(numbers); // displays the entire array
 let length = numbers.length;
 console.log(`array has ${length} items`);
 // parseInt works for removing integers but not strings 
 // with no parseInt, it works for removing strings but not integers
-let userEntryInt = prompt('Enter the item to remove', 3); // this is what you want to know the index of
-// console.log(`item ${userEntryInt} will be removed`); // when string, it shows NaN if you put parseInt
+// let userEntry = parseInt(prompt('Enter the item to remove', 3));
+let userEntry = prompt('Enter the item to remove', 3); // this is what you want to know the index of
+console.log(`array item ${userEntry} will be removed`); // when string, it shows NaN if you put parseInt
 // at the prompt
-
-
-// let index = numbers.indexOf(userEntryInt); // use the index number to remove it from the array 
-// let indexString = numbers.indexOf(userEntryString); 
-// using a splice or slice or a similar method. see below on how the splice works
-// console.log(`index number ${index} will be removed`); // when no parseInt is used a number shows index 
-//of -1. while a string shows the correct index. when parseInt is used, a number shows the correct index
-// but a string shows -1 
-// console.log(`index number ${indexString} will be removed`); // if -1 shows, then they entered an item 
-// not in the array and it will remove the -1 index which is the last item.
-
-/*
-if (index >= 0) { // for NaN, it is -1 and won't remove anything
-    numbers.splice(index, 1); // you need the >=0 or else the -1 index is used to remove the last 
-    // item and you don't want that. 
-    console.log(`resulting array ${numbers}`);
-}
-   /* else if (indexString >= 0) {
-    numbers.splice(indexString, 1);
-    console.log(`resulting array ${numbers}`);
-} */ /*
-    else {
-    console.log(`${userEntryInt} doesn't exist`);
-    console.log(`resulting array unchanged: ${numbers}`);
-    } */
-
-/* numbers.splice(index, 1);  // line 39 is the index number which is the start. 1 is 1 item from 
-// the start. it will only remove the specified index number. 
-console.log(`resulting array ${numbers}`); // remaining items */
-
-/*
-// use numbers[0] numbers[1] etc to access each item in the array. also .length-1 is how you get
-// the last item
-let someItem = numbers[0];
-console.log(`first item is ${someItem}`); // shows first item
-someItem = numbers[2];
-console.log(`third item is ${someItem}`); // shows third item
-someItem = numbers[length-1]; // for the last item
-console.log(`last item is ${someItem}`);
-*/
 
 /* line 32 has a function to receive all the array items as the first argument. the last argument is
 a 3 which is the item to be removed. the result will be 1, 2, 4.
 
 */
 
-let index;
+let index;  // these lines loop through the array and print each index and item on a separate line.
 for(const number of numbers) { // next step is to use a loop in combo with an array method
     index = numbers.indexOf(number);
     console.log(`array index ${index}`);
-    console.log(`array item ${number}`);
-} /* for the last argument which is the one to be removed, do a test on each item to see if it 
-matches the one to be removed and use the pop() method? maybe pop is not good b/c it only removes
-the last item?
-// removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-
-*/
-
-/*
-function toMatch(number){ 
-    // return number === 3 // similar to saying if number === 3 then return that number
-    // if (number === 'hello') {
-    return number == userEntryInt;
-    // }
+    console.log(`array item ${number}`)
 }
-const match = numbers.filter(toMatch); // using filter() method while looping to only do an action on 
-// the item that matches. the filter method calls the toMatch function and returns the item that 
-// has a value of 3
-console.log(`array loop filter item ${match}`);
+
+// these lines loop through the array using the map method. the map method is calling a function which 
+// receives each item of the array as misc and returns the index number of each misc into a new array
+function getIndex(misc) {
+    return numbers.indexOf(misc); // for the numbers.map(getIndex) the parameter misc can be named  
+    // anything. notice lines 73 to 85 for the numbers.findIndex(userEntryIndex), there you used 
+    // parameter element but it could be misc or number or anything
+    
+}
+const indexNumbers = numbers.map(getIndex);
+console.log(indexNumbers);
+
+// these lines loop through the array using the findIndex method. the findIndex method is calling a 
+// function which receives each item of the array as element and returns the item of the array aka 
+// element. but it only returns that element's index number when it finds a match of the user's entry.
+// when you had parseInt in the prompt, it only worked on numbers and not on strings. when you removed
+// parseInt, then it only worked on strings and not numbers
+
+function userEntryIndex(element) {
+    return (element == userEntry); // use == instead of ===. the === is strict equality which 
+    // means the value and type have to be the same. so '3' as a string is not the same as 3 as 
+    // a number. but == will work for '3' as a string compared to 3 as the number.
+    // a reminder on the findIndex array method, the parameter passed to the function is element
+    // but it can be named anything. just like the map array method on line 58 to 64, there the 
+    // parameter passed is called misc but you can name it anything. the main idea for array methods
+    // like map or findIndex is when you put a function inside the method, then the function will
+    // need to receive each array item. that array item can be named anything inside that particular
+    // function.
+}
+
+const indexToRemove = numbers.findIndex(userEntryIndex);
+console.log(`array index to remove ${indexToRemove}`);
+console.log(`array item to remove ${userEntry}`);
+
+// using a splice or slice or a similar method. see below on how the splice works
+
+/* 
+numbers.splice(index, 1);  // index is the start. 1 is 1 item from the start. it will only remove 
+the specified index number
+console.log(`resulting array ${numbers}`); // remaining items 
+
 */
 
-// if the item equals the thing to remove from removeFromArray(array name, thing to remove), then 
-// show a new array with all the items minus that one that was removed
-// the first parameter in removeFromArray will be the const numbers. this way it gets the entire array
-// the second parameter you will store in a variable that way the user can try different things 
-// to remove. see below for an example.
+// the lines below were practicing the splice method
 
 const months = ['Jan', 'Mar', 'Apr', 'Jun'];
 console.log(`orginal array ${months}`);
