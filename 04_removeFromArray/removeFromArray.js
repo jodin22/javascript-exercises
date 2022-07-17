@@ -37,9 +37,9 @@ console.log(`array has ${length} items`);
 // parseInt works for removing integers but not strings 
 // with no parseInt, it works for removing strings but not integers
 // let userEntry = parseInt(prompt('Enter the item to remove', 3));
-let userEntry = prompt('Enter the item to remove', 3); // this is what you want to know the index of
-console.log(`array item ${userEntry} will be removed`); // when string, it shows NaN if you put parseInt
-// at the prompt
+let userEntry = prompt(`Enter the item to remove: \n ${numbers}`, 3); // this is what you want to know the index of
+console.log(`array item ${userEntry} will be removed`); // a string such as 'hello', it shows NaN 
+// if you put parseInt at the prompt
 
 /* line 32 has a function to receive all the array items as the first argument. the last argument is
 a 3 which is the item to be removed. the result will be 1, 2, 4.
@@ -49,8 +49,7 @@ a 3 which is the item to be removed. the result will be 1, 2, 4.
 let index;  // these lines loop through the array and print each index and item on a separate line.
 for(const number of numbers) { // next step is to use a loop in combo with an array method
     index = numbers.indexOf(number);
-    console.log(`array index ${index}`);
-    console.log(`array item ${number}`)
+    console.log(`array index ${index} is item ${number}`);
 }
 
 // these lines loop through the array using the map method. the map method is calling a function which 
@@ -86,6 +85,44 @@ const indexToRemove = numbers.findIndex(userEntryIndex);
 console.log(`array index to remove ${indexToRemove}`);
 console.log(`array item to remove ${userEntry}`);
 
+/* so far the lines 33 to 87 work this way: there is an array of items. the prompt asks the user 
+to enter an item to remove. it takes that item and finds the index in your array and will remove 
+it from the array. Right now you're at the find index part. It finds the index of the item regardless 
+if it is a number or string b/c you are using the ==. This means the type is not strict and for '3', 
+it will still find it even though your array doesn't have '3' but instead has 3. The splice is the
+second to last part. then the last part is to pass the array as the first argument, and the second 
+argument will be the value to remove. Be aware that the values to remove might not just be one value.
+the user will be able to enter more than one value.
+
+on the test file removeFromArray.spec.js this lines 33 to 87 will work for all the tests except the 
+last one b/c the last one
+
+*/
+
+/* 
+let userEntryConvert; //userEntry here will be converted to a number to compare with numbers vs something 
+// like '5'. expect NaN for things like 'hello' and 'bye' and '5'. NaN counts as false. So try a test
+// for that. 0, NaN and '' are false when you do a boolean test.
+userEntryConvert = Number(userEntry); // '5' will be changed to 5. actually all entries will be 
+// changed to a number. 'hello' and 'bye' will become NaN
+
+for(const number of numbers) { 
+    index = numbers.indexOf(number);
+    console.log(`array index ${index} is item ${number}`);
+    console.log(`userEntry as a number: ${userEntryConvert}`); // Nan for 'hello'
+    console.log(`userEntry type: ${typeof userEntryConvert}`); // still shows number for 'hello' or '5' 
+    // b/c even if Nan, the change at line 102 made a string a number and for actual words, it 
+    // becomes NaN and for '5' will be 5
+    // if the item is type of string, don't convert to a number. then take that variable and do a
+    // === comparison so when the user enters '3', it won't remove 3. 
+}
+
+// take the prompt and change it to a number. if you get NaN then you know it is 'hello' or '5' etc
+
+*/
+
+
+
 // using a splice or slice or a similar method. see below on how the splice works
 
 /* 
@@ -97,6 +134,7 @@ console.log(`resulting array ${numbers}`); // remaining items
 
 // the lines below were practicing the splice method
 
+/*
 const months = ['Jan', 'Mar', 'Apr', 'Jun'];
 console.log(`orginal array ${months}`);
 months.splice(1, 0, 'Feb'); // starts at index 1 which is Mar. the 0 is remove no items.
@@ -107,6 +145,7 @@ months.splice(4, 1, 'May'); // starts at index 4 which is Jun. 1 is to remove 1 
 console.log(`second splice result is replace: ${months}`); // Jan, Feb, Mar, Apr, May
 months.splice(2, 1); 
 console.log(`third splice result is remove: ${months}`); // Jan, Feb, Apr, May
+*/
 
 /*  
 https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
