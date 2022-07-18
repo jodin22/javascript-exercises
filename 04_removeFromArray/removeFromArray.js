@@ -42,8 +42,9 @@ console.log(`array has ${length} items`);
 // let userEntry = prompt(`Enter the item to remove: \n ${numbers}`, 3); // this is what you want to know the index of
 // console.log(`array item ${userEntry} will be removed`); // a string such as 'hello', it shows NaN 
 // if you put parseInt at the prompt
-let itemToRemove = '1';
-console.log(`To be removed: ${itemToRemove}`);
+let itemToRemove = 3; // for now manually enter numbers or strings to test. later, right a function
+// that sends the array and also the items to remove as parameters
+console.log(`array item to be removed: ${itemToRemove}`);
 
 /* line 32 has a function to receive all the array items as the first argument. the last argument is
 a 3 which is the item to be removed. the result will be 1, 2, 4.
@@ -60,7 +61,7 @@ for(const number of numbers) { // next step is to use a loop in combo with an ar
 // receives each item of the array as misc and returns the index number of each misc into a new array
 function getIndex(misc) {
     return numbers.indexOf(misc); // for the numbers.map(getIndex) the parameter misc can be named  
-    // anything. notice lines 73 to 85 for the numbers.findIndex(userEntryIndex), there you used 
+    // anything. notice lines 77 to 91 for the numbers.findIndex(userEntryIndex), there you used 
     // parameter element but it could be misc or number or anything
     
 }
@@ -78,7 +79,7 @@ function userEntryIndex(element) {
     // means the value and type have to be the same. so '3' as a string is not the same as 3 as 
     // a number. but == will work for '3' as a string compared to 3 as the number.
     // a reminder on the findIndex array method, the parameter passed to the function is element
-    // but it can be named anything. just like the map array method on line 58 to 64, there the 
+    // but it can be named anything. just like the map array method on line 62 to 69, there the 
     // parameter passed is called misc but you can name it anything. the main idea for array methods
     // like map or findIndex is when you put a function inside the method, then the function will
     // need to receive each array item. that array item can be named anything inside that particular
@@ -89,7 +90,7 @@ const indexToRemove = numbers.findIndex(userEntryIndex);
 console.log(`array item to remove ${itemToRemove}`);
 console.log(`array index to remove ${indexToRemove}`);
 
-/* so far the lines 33 to 87 work this way: there is an array of items. the prompt asks the user 
+/* so far the lines 33 to 91 work this way: there is an array of items. the prompt asks the user 
 to enter an item to remove. it takes that item and finds the index in your array and will remove 
 it from the array. Right now you're at the find index part. It finds the index of the item regardless 
 if it is a number or string b/c you are using the ==. This means the type is not strict and for '3', 
@@ -98,7 +99,7 @@ second to last part. then the last part is to pass the array as the first argume
 argument will be the value to remove. Be aware that the values to remove might not just be one value.
 the user will be able to enter more than one value.
 
-on the test file removeFromArray.spec.js this lines 33 to 87 will work for all the tests except the 
+on the test file removeFromArray.spec.js this lines 33 to 91 will work for all the tests except the 
 last one b/c the last one passes an array of numbers and the remove items are some numbers like 
 2, 3 and some strings like '1', '2'. the last test is looking for strict equality ===
 
@@ -108,43 +109,20 @@ use == instead of === when finding the index. in later HW's try to get the promp
 strings from numbers
 */
 
-/* 
-this part below is something you can figure out later on prompts and handling strings vs numbers. 
-for now, just focus on passing your array and the items to remove to the 
-removeFromArray([1, 2, 3, 4], 3) function and see if it works. 
-
-let userEntryConvert; //userEntry here will be converted to a number to compare with numbers vs something 
-// like '5'. expect NaN for things like 'hello' and 'bye' and '5'. NaN counts as false. So try a test
-// for that. 0, NaN and '' are false when you do a boolean test.
-userEntryConvert = Number(userEntry); // '5' will be changed to 5. actually all entries will be 
-// changed to a number. 'hello' and 'bye' will become NaN but still show as number when you do 
-// a typeof
-
-for(const number of numbers) { 
-    index = numbers.indexOf(number);
-    console.log(`array index ${index} is item ${number}`);
-    console.log(`userEntry as a number: ${userEntryConvert}`); // Nan for 'hello'
-    console.log(`userEntry type: ${typeof userEntryConvert}`); // still shows number for 'hello' or '5' 
-    // b/c even if NaN, the change at line 111 made a string a number and for actual words, it 
-    // becomes NaN and for '5' will be 5
-    // if the item is type of string, don't convert to a number. then take that variable and do a
-    // === comparison so when the user enters '3', it won't remove 3. 
-}
-
-// take the prompt and change it to a number. if you get NaN then you know it is 'hello' or '5' etc
-
-*/
-
-
-
 // using a splice or slice or a similar method. see below on how the splice works
 
-/* 
-numbers.splice(index, 1);  // index is the start. 1 is 1 item from the start. it will only remove 
-the specified index number
-console.log(`resulting array ${numbers}`); // remaining items 
-
-*/
+// if the index is -1, then do not remove it from the array. if index is 0 or greater, then yes
+// remove it from the array. an index of -1 is the same as length-1 which is the last item in an
+// array
+if (indexToRemove >= 0) {
+    numbers.splice(indexToRemove, 1);
+    console.log(`resulting array ${numbers}`); // remaining items
+} else {
+    console.log(`array item ${itemToRemove} not found`);
+    console.log(`resulting array ${numbers}`);
+}
+// splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
+// the specified index number
 
 // the lines below were practicing the splice method
 
@@ -178,3 +156,29 @@ to remove from start. item1, item2, etc are items to add to the array beginning 
 
 */
 
+/* 
+this part below is something you can figure out later on prompts and handling strings vs numbers. 
+for now, just focus on passing your array and the items to remove to the 
+removeFromArray([1, 2, 3, 4], 3) function and see if it works. 
+
+let userEntryConvert; //userEntry here will be converted to a number to compare with numbers vs something 
+// like '5'. expect NaN for things like 'hello' and 'bye' and '5'. NaN counts as false. So try a test
+// for that. 0, NaN and '' are false when you do a boolean test.
+userEntryConvert = Number(userEntry); // '5' will be changed to 5. actually all entries will be 
+// changed to a number. 'hello' and 'bye' will become NaN but still show as number when you do 
+// a typeof
+
+for(const number of numbers) { 
+    index = numbers.indexOf(number);
+    console.log(`array index ${index} is item ${number}`);
+    console.log(`userEntry as a number: ${userEntryConvert}`); // Nan for 'hello'
+    console.log(`userEntry type: ${typeof userEntryConvert}`); // still shows number for 'hello' or '5' 
+    // b/c even if NaN, the change at line 161 made a string a number and for actual words, it 
+    // becomes NaN and for '5' will be 5
+    // if the item is type of string, don't convert to a number. then take that variable and do a
+    // === comparison so when the user enters '3', it won't remove 3. 
+}
+
+// take the prompt and change it to a number. if you get NaN then you know it is 'hello' or '5' etc
+
+*/
