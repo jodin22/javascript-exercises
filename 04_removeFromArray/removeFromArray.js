@@ -30,7 +30,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 */
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-const numbers = [1, 2, 3]; 
+const numbers = [1, 2, 3, 4]; 
 // also use (['hey', 2, 3, 'ho'], 'hey', 3) 
 // ([1, 2, 3], '1', 3)
 console.log(numbers); // displays the entire array
@@ -42,23 +42,27 @@ console.log(`array has ${length} items`);
 // let userEntry = prompt(`Enter the item to remove: \n ${numbers}`, 3); // this is what you want to know the index of
 // console.log(`array item ${userEntry} will be removed`); // a string such as 'hello', it shows NaN 
 // if you put parseInt at the prompt
-let itemToRemove = 3; // for now manually enter numbers or strings to test. later, right a function
+let itemToRemove = 4; // for now manually enter numbers or strings to test. later, right a function
 // that sends the array and also the items to remove as parameters
 console.log(`array item to be removed: ${itemToRemove}`);
+removeFromArray(numbers, itemToRemove);
 
 /* line 32 has a function to receive all the array items as the first argument. the last argument is
 a 3 which is the item to be removed. the result will be 1, 2, 4.
 
 */
 
+// LINES 57 TO 131 WERE BUILDING EACH PART SEPARATELY BEFORE PUTTING IT ALTOGETHER. ALL COMMENTED OUT.
+/*
 let index;  // these lines loop through the array and print each index and item on a separate line.
 for(const number of numbers) { // next step is to use a loop in combo with an array method
     index = numbers.indexOf(number);
     console.log(`array index ${index} is item ${number}`);
 }
-
+*/
 // these lines loop through the array using the map method. the map method is calling a function which 
 // receives each item of the array as misc and returns the index number of each misc into a new array
+/*
 function getIndex(misc) {
     return numbers.indexOf(misc); // for the numbers.map(getIndex) the parameter misc can be named  
     // anything. notice lines 77 to 91 for the numbers.findIndex(userEntryIndex), there you used 
@@ -67,13 +71,14 @@ function getIndex(misc) {
 }
 const indexNumbers = numbers.map(getIndex);
 console.log(indexNumbers);
-
+*/
 // these lines loop through the array using the findIndex method. the findIndex method is calling a 
 // function which receives each item of the array as element and returns the item of the array aka 
 // element. but it only returns that element's index number when it finds a match of the user's entry.
 // when you had parseInt in the prompt, it only worked on numbers and not on strings. when you removed
 // parseInt, then it only worked on strings and not numbers
 
+/*
 function userEntryIndex(element) {
     return (element === itemToRemove); // use == instead of ===. the === is strict equality which 
     // means the value and type have to be the same. so '3' as a string is not the same as 3 as 
@@ -89,6 +94,7 @@ function userEntryIndex(element) {
 const indexToRemove = numbers.findIndex(userEntryIndex);
 console.log(`array item to remove ${itemToRemove}`);
 console.log(`array index to remove ${indexToRemove}`);
+*/
 
 /* so far the lines 33 to 91 work this way: there is an array of items. the prompt asks the user 
 to enter an item to remove. it takes that item and finds the index in your array and will remove 
@@ -114,13 +120,43 @@ strings from numbers
 // if the index is -1, then do not remove it from the array. if index is 0 or greater, then yes
 // remove it from the array. an index of -1 is the same as length-1 which is the last item in an
 // array
+
+/*
 if (indexToRemove >= 0) {
     numbers.splice(indexToRemove, 1);
     console.log(`resulting array ${numbers}`); // remaining items
 } else {
     console.log(`array item ${itemToRemove} not found`);
     console.log(`resulting array ${numbers}`);
+}  
+*/
+
+
+//  call this function and pass your array and the items you want to remove
+function removeFromArray(numbers, itemToRemove) {
+    /* the value of the itemToRemove will be compared to each item in your array
+    when a match is found, then get that index number
+    then remove that index number from the array
+    show the array with only the remaining items */
+    
+    function userEntryIndex(element) {
+        return (element === itemToRemove);
+    }
+    
+    const indexToRemove = numbers.findIndex(userEntryIndex);
+    console.log(`array item to remove ${itemToRemove}`);
+    console.log(`array index to remove ${indexToRemove}`);
+
+    if (indexToRemove >= 0) {
+    numbers.splice(indexToRemove, 1);
+    console.log(`resulting array ${numbers}`); // remaining items
+    } else {
+    console.log(`array item ${itemToRemove} not found`);
+    console.log(`resulting array ${numbers}`);
+    }
 }
+
+
 // splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
 // the specified index number
 
