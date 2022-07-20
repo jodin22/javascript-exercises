@@ -30,7 +30,7 @@ https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest
 */
 
 // removeFromArray([1, 2, 3, 4], 3); // should remove 3 and return [1,2,4]
-const numbers = [1, 2, 3, 4]; 
+const numbers = ['hey', 2, 3, 'ho']; 
 // also use (['hey', 2, 3, 'ho'], 'hey', 3) 
 // ([1, 2, 3], '1', 3)
 console.log(numbers); // displays the entire array
@@ -42,7 +42,7 @@ console.log(`array has ${length} items`);
 // let userEntry = prompt(`Enter the item to remove: \n ${numbers}`, 3); // this is what you want to know the index of
 // console.log(`array item ${userEntry} will be removed`); // a string such as 'hello', it shows NaN 
 // if you put parseInt at the prompt
-let itemToRemove = 4; // for now manually enter numbers or strings to test. later, right a function
+let itemToRemove = 'hey'; // for now manually enter numbers or strings to test. later, right a function
 // that sends the array and also the items to remove as parameters
 console.log(`array item to be removed: ${itemToRemove}`);
 removeFromArray(numbers, itemToRemove);
@@ -139,11 +139,27 @@ function removeFromArray(numbers, itemToRemove) {
     then remove that index number from the array
     show the array with only the remaining items */
     
-    function userEntryIndex(element) {
+    /* function userEntryIndex(element) {  on line 148 is an arrow function. if the arrow function 
+        is not used, then you need to uncomment this function userEntryIndex(element) 
+
         return (element === itemToRemove);
-    }
+    } */
     
-    const indexToRemove = numbers.findIndex(userEntryIndex);
+    const indexToRemove = numbers.findIndex((element) => element === itemToRemove);
+    /* without the arrow function, you would write it like this: 
+    const indexToRemove = numbers.findIndex(userEntryIndex); this would use the findIndex method and 
+    call the userEntryIndex function from line 142. that function would receive element and return the
+    element when it equals itemToRemove. using an arrow function makes it easier to write b/c you are 
+    only using the findIndex method and passing the element which is each item in the array. the stuff
+    that comes after => is the actual work of the function from line 142. you don't need return. 
+    and if your function has more than one line, then be sure to use { }. basically an arrow function 
+    is all the stuff of a regular function inside the { } but you are not calling it by the function's
+    name. it is anonymous.     
+
+    syntax is array.method((each array item that you are passing to the function) => the work of the
+    function); notice there is no function name and you are only passing the item of an array
+
+    */
     console.log(`array item to remove ${itemToRemove}`);
     console.log(`array index to remove ${indexToRemove}`);
 
