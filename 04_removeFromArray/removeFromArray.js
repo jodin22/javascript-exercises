@@ -42,7 +42,7 @@ console.log(`array has ${length} items`);
 // let userEntry = prompt(`Enter the item to remove: \n ${numbers}`, 3); // this is what you want to know the index of
 // console.log(`array item ${userEntry} will be removed`); // a string such as 'hello', it shows NaN 
 // if you put parseInt at the prompt
-let itemToRemove = 'hey'; // for now manually enter numbers or strings to test. later, right a function
+let itemToRemove = 2; // for now manually enter numbers or strings to test. later, right a function
 // that sends the array and also the items to remove as parameters
 console.log(`array item to be removed: ${itemToRemove}`);
 removeFromArray(numbers, itemToRemove);
@@ -171,6 +171,29 @@ function removeFromArray(numbers, itemToRemove) {
     console.log(`resulting array ${numbers}`);
     }
 }
+
+// this part is trying the multiple optional arguments with the array
+const numbers2 = [1, 2, 3, 4, 'hey', 'taco'];
+console.log(numbers2);
+let length2 = numbers2.length;
+console.log(`array has ${length2} elements`);
+// const itemToRemove2 = [];
+// console.log(`element to remove: ${itemToRemove2}`);
+// console.log(typeof itemToRemove2);
+// console.log(typeof itemToRemove);
+
+const removeFromArray2 = function(array2, ...args) { // figure out why function has no name?
+    args.forEach((arg) => { // lines 186 to 190, i understand
+        const index2 = array2.indexOf(arg);
+        console.log(index2);
+    });
+};
+
+removeFromArray2(numbers2, '1', 1, 2,'hey', 'taco'); // does this mean the const is named 
+// removeFromArray2 but the value is actually this function(array2, ...args) and inside this function
+// is the args.forEach((arg) => arrow function? and the reason there is no name in
+// function(array2, ...args) is b/c it's name is actually the const name? and just calling the 
+// const name and providing values for the array2 and ...args parameter is enough to get it going?
 
 
 // splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
