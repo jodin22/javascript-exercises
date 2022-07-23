@@ -187,8 +187,13 @@ using const b/c you want the value to be an array and arrays need const for the 
 this time the const is holding a function. and this function receives an array of values as the
 the first parameter. the rest of the parameters are optional.
 */ 
+
+/* https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters
+the sytax function(array2, ...args) is from rest parameters. it makes the ...args real arrays and
+you can use array methods on them. 
+*/
 const removeFromArray2 = function(array2, ...args) { // array2 is the array that it receives. 
-    // ...args are the optional values. and ...args means those values can behave like an array.
+    // ...args are the optional values. and ...args means those values are part of an array now
     args.forEach((arg) => { 
         const index2 = array2.indexOf(arg); 
         console.log(`element ${arg} to be removed`);
