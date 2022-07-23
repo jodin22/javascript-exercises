@@ -173,27 +173,47 @@ function removeFromArray(numbers, itemToRemove) {
 }
 
 // this part is trying the multiple optional arguments with the array
-const numbers2 = [1, 2, 3, 4, 'hey', 'taco'];
-console.log(numbers2);
+const numbers2 = [1, 2, 3, 4, 5, 'hey', 'taco'];
+console.log(`original array ${numbers2}`);
 let length2 = numbers2.length;
 console.log(`array has ${length2} elements`);
-// const itemToRemove2 = [];
-// console.log(`element to remove: ${itemToRemove2}`);
-// console.log(typeof itemToRemove2);
-// console.log(typeof itemToRemove);
 
-const removeFromArray2 = function(array2, ...args) { // figure out why function has no name?
-    args.forEach((arg) => { // lines 186 to 190, i understand
-        const index2 = array2.indexOf(arg);
-        console.log(index2);
+/* the const removeFromArray2 = is using the const to store a function. so far, you've been 
+declaring functions like this: function nameOfFunction(parameter, parameter ) { }. now you're
+using const b/c you want the value to be an array and arrays need const for the declaration.
+*/
+
+/* const removeFromArray2 = is an array but not like the array's above where those held [1, 2, 3, 4] etc.
+this time the const is holding a function. and this function receives an array of values as the
+the first parameter. the rest of the parameters are optional.
+*/ 
+const removeFromArray2 = function(array2, ...args) { // array2 is the array that it receives. 
+    // ...args are the optional values. and ...args means those values can behave like an array.
+    args.forEach((arg) => { 
+        const index2 = array2.indexOf(arg); 
+        console.log(`element ${arg} to be removed`);
+        console.log(`index ${index2} to be removed`);
+        console.log(`starting elements: ${array2}`);
+        if (index2 >= 0) {
+            array2.splice(index2, 1);
+        }
+        console.log(`remaining elements: ${array2}`);
     });
+    
 };
 
-removeFromArray2(numbers2, '1', 1, 2,'hey', 'taco'); // does this mean the const is named 
-// removeFromArray2 but the value is actually this function(array2, ...args) and inside this function
-// is the args.forEach((arg) => arrow function? and the reason there is no name in
-// function(array2, ...args) is b/c it's name is actually the const name? and just calling the 
-// const name and providing values for the array2 and ...args parameter is enough to get it going?
+/* args.forEach((arg) => {  }) this is the forEach method on the args array. it will do the same 
+function to each element in the array. now you have an array2 which is the orginal array. and args
+is a secondary array for those optional values that you are to check to see if they exist in the 
+original array. 
+
+the arrow function receives each arg aka element from the args array and uses the indexOf method 
+to get the index value of that same arg if it exists in the array2 array (original array). if it 
+does exist, then it shows the index number. if it doesn't then it shows -1. 
+
+*/
+
+removeFromArray2(numbers2, 'hey', 4, 'taco', '3', 5);
 
 
 // splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
