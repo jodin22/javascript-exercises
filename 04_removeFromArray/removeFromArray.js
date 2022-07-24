@@ -200,11 +200,13 @@ const removeFromArray2 = function(array2, ...args) { // array2 is the array that
     // ...args are the optional values. and ...args means those values are part of an array now
     args.forEach((arg) => { 
         const index2 = array2.indexOf(arg); 
-        console.log(`element ${arg} to be removed`);
-        console.log(`index ${index2} to be removed`);
+        console.log(`element ${arg} of index ${index2} to be removed`);
         console.log(`starting elements: ${array2}`);
         if (index2 >= 0) {
             array2.splice(index2, 1);
+        }
+        else {
+            console.log(`element ${arg} of index ${index2} not found`);
         }
         console.log(`remaining elements: ${array2}`);
     }); // there is }); b/c this is an arrow function
@@ -222,7 +224,7 @@ does exist, then it shows the index number. if it doesn't then it shows -1.
 
 */
 
-removeFromArray2(numbers2, '4', 2, 'taco');
+removeFromArray2(numbers2, '4', 2, 'taco', 'bye');
 
 
 // splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
