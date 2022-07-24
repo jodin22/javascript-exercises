@@ -173,14 +173,18 @@ function removeFromArray(numbers, itemToRemove) {
 }
 
 // this part is trying the multiple optional arguments with the array
-const numbers2 = [1, 2, 3, 4, 5, 'hey', 'taco'];
+const numbers2 = [1, 2, 3, 4, 'hey', 'taco'];
 console.log(`original array ${numbers2}`);
 let length2 = numbers2.length;
 console.log(`array has ${length2} elements`);
 
 /* the const removeFromArray2 = is using the const to store a function. so far, you've been 
 declaring functions like this: function nameOfFunction(parameter, parameter ) { }. now you're
-using const b/c you want the value to be an array and arrays need const for the declaration.
+using const b/c you want the value to be an array and arrays need const for the declaration. also the 
+first way of learning functions was called function declaration. this new way is called function 
+expression. notice at line 199, there is no function name. this is b/c the function expression is 
+like a constant/variable declaration where you declare the variable and assign it a value.  and 
+functions are just values anyways so this works. 
 */
 
 /* const removeFromArray2 = is an array but not like the array's above where those held [1, 2, 3, 4] etc.
@@ -203,9 +207,9 @@ const removeFromArray2 = function(array2, ...args) { // array2 is the array that
             array2.splice(index2, 1);
         }
         console.log(`remaining elements: ${array2}`);
-    });
+    }); // there is }); b/c this is an arrow function
     
-};
+}; // there is a ; here b/c this is not a normal function declaration but a function expression
 
 /* args.forEach((arg) => {  }) this is the forEach method on the args array. it will do the same 
 function to each element in the array. now you have an array2 which is the orginal array. and args
@@ -218,7 +222,7 @@ does exist, then it shows the index number. if it doesn't then it shows -1.
 
 */
 
-removeFromArray2(numbers2, 'hey', 4, 'taco', '3', 5);
+removeFromArray2(numbers2, '4', 2, 'taco');
 
 
 // splice(index, 1). index is the start. 1 is 1 item from the start. it will only remove 
