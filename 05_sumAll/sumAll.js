@@ -29,33 +29,26 @@ return the sum after finishing the loop
 
 */
 
-/* the loop at lines 45 and 79 run for any two numbers. now i need to make sure they only run for
+/* the loop at lines 72 and 89 run for any two numbers. now i need to make sure they only run for
 positive integers and not for negatives and arrays. then you need to put this in a function that 
 will receive 2 numbers to calculate. ex sumAll(number1, number2)
 
 */
 
-let firstNum = 10;  
-console.log(`First number: ${firstNum}`);
-let secondNum = [90, 1]; // this is an array but b/c it isn't in const, it shows as 90, 1. we don't
-// want arrays, we only want positive integers
-console.log(`Second number: ${secondNum}`);
-let sum = 0;
-
-for(let i = firstNum; i <= secondNum; i++) {  // this loop runs when the firstNum < secondNum. need 
-    // another way to loop when firstNum > secondNum
-    console.log(`The count is: ${i}`);
-    sum += i;
-    console.log(`The sum is: ${sum}`);
-/*
-0 = 0+1 ...1
-1 = 1+2 ...2
-3 = 3+3 ...3
-6 = 6+4 ...4
-10
-
-*/
+let firstNum = 5;
+if(Number.isInteger(firstNum)) {
+    console.log(`First number: ${firstNum}`);
+} else {
+    console.log(`First number ${firstNum} is not an integer`);
 }
+let secondNum = '1'; // array [90, 1] that isn't in const, it shows as 90, 1. we don't
+// want arrays, we only want positive integers
+if(Number.isInteger(secondNum)) {
+    console.log(`Second number: ${secondNum}`);
+} else {
+    console.log(`Second number ${secondNum} is not an integer`);
+}
+let sum = 0;
 
 /* 
 sumAll(1, 4) works. it should also work when you do sumAll(4, 1). which means you can't use the
@@ -92,6 +85,21 @@ if (firstNum > secondNum) { // when the firstNum > secondNum, it will make new v
 } else {
     console.log(`First number: ${firstNum}`);
     console.log(`Second number: ${secondNum}`);
+
+    for(let i = firstNum; i <= secondNum; i++) {  // this loop runs when the firstNum < secondNum. need 
+        // another way to loop when firstNum > secondNum
+        console.log(`The count is: ${i}`);
+        sum += i;
+        console.log(`The sum is: ${sum}`);
+    /*
+    0 = 0+1 ...1
+    1 = 1+2 ...2
+    3 = 3+3 ...3
+    6 = 6+4 ...4
+    10
+    
+    */
+    }
 }
 
 /* 
