@@ -29,24 +29,60 @@ return the sum after finishing the loop
 
 */
 
-/* the loop at lines 72 and 89 run for any two numbers. now i need to make sure they only run for
-positive integers and not for negatives and arrays. then you need to put this in a function that 
-will receive 2 numbers to calculate. ex sumAll(number1, number2)
+/* the two loops for summing run for any two numbers regardless of the first number > second number.
+(1, 10) or (10,1) works. *checked*
+
+now i need to make sure they only run for positive integers and not for negatives and arrays. then
+you need to put this in a function that will receive 2 numbers to calculate. 
+ex sumAll(number1, number2)
+
+1) when the first number is an integer and the second number is a string, the sum works. (1, '10') 
+*checked*
+
+2) ('10', 1) becomes (1, '10') and still works. this sees '10' as larger than 1 even though they are 
+comparing strings vs numbers. the '10' becomes the new second number and the 1 is the new first number.
+and the sum will still work. 
+
+3) ('1', 10) this will not work. this keeps '1' as the first number and 10 as the second number. it 
+sees '1' as less than 10 even though they are comparing strings vs numbers.  
+the sum looks like this 012345678910. it is a concatenation. 
+
+as long as the first number is an actual number and not a string, the sum will work.
+*checked*
+
+4) ('1', '10') doesn't work. it concatenates instead of sums. it looks like this 012345678910
+*checked*
+
+5) ('10', '1') becomes ('1', '10'). doesn't work.  although they are strings, it does a comparison 
+as if they are numbers and puts them in the right order of smaller as the first number and bigger 
+as the second number. but b/c the new first number is a string, it concatenates instead of sums
+012345678910
+
+
 
 */
 
-let firstNum = 5;
-if(Number.isInteger(firstNum)) {
-    console.log(`First number: ${firstNum}`);
+let firstNum = 10;
+if(Number.isInteger(firstNum) && (firstNum >= 0) && (typeof firstNum !== 'string' )) {
+    console.log(`First integer: ${firstNum}`);
+    console.log(typeof firstNum);
+    // pass the firstNum value to the loops below
 } else {
-    console.log(`First number ${firstNum} is not an integer`);
+    console.log(`First number ${firstNum} is not a positive integer`);
+    console.log(typeof firstNum);
+    // don't pass the firstNum string to the loops below
 }
-let secondNum = '1'; // array [90, 1] that isn't in const, it shows as 90, 1. we don't
+let secondNum = 1; // array [90, 1] that isn't in const, it shows as 90, 1. we don't
 // want arrays, we only want positive integers
-if(Number.isInteger(secondNum)) {
-    console.log(`Second number: ${secondNum}`);
+if(Number.isInteger(secondNum) && (secondNum >= 0) && (typeof secondNum !== 'string' )) {
+    console.log(`Second integer: ${secondNum}`); 
+    console.log(typeof secondNum);
+    // pass the secondNum value to the loops below
+     
 } else {
-    console.log(`Second number ${secondNum} is not an integer`);
+    console.log(`Second number ${secondNum} is not a positive integer`);
+    console.log(typeof secondNum); 
+    // don't pass the secondNum string to the loops below
 }
 let sum = 0;
 
