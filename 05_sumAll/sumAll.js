@@ -39,7 +39,12 @@ ex sumAll(number1, number2)
 so far seems to work. now need to put it in a function and pass it two numbers
 */
 
-let firstNum = 8;
+// let firstNum = 8; before adding the function, the firstNum and secondNum were at the top of each
+// of their respective blocks around lines 48 and 60
+// let secondNum = 88; // array [90, 1] that isn't in const, it shows as 90, 1. we don't
+// want arrays, we only want positive integers
+
+function sumAll(firstNum, secondNum) {    
 let toSendFirstNum;
 if(Number.isInteger(firstNum) && (firstNum >= 0) && (typeof firstNum !== 'string' )) {
     console.log(`First integer: ${firstNum}`);
@@ -51,8 +56,7 @@ if(Number.isInteger(firstNum) && (firstNum >= 0) && (typeof firstNum !== 'string
     console.log(typeof firstNum);
     // don't pass the firstNum string to the loops below
 }
-let secondNum = [88, 8]; // array [90, 1] that isn't in const, it shows as 90, 1. we don't
-// want arrays, we only want positive integers
+
 let toSendSecondNum;
 if(Number.isInteger(secondNum) && (secondNum >= 0) && (typeof secondNum !== 'string' )) {
     console.log(`Second integer: ${secondNum}`); 
@@ -86,7 +90,7 @@ if (toSendFirstNum > toSendSecondNum) { // when the firstNum > secondNum, it wil
     console.log(`New first number: ${newFirstNum}`);
     console.log(`New second number: ${newSecondNum}`);
 
-    for(let i = newFirstNum; i <= newSecondNum; i++) {  //
+    for(let i = newFirstNum; i <= newSecondNum; i++) { 
         console.log(`The count is: ${i}`);
         sum += i;
         console.log(`The sum is: ${sum}`);
@@ -121,21 +125,10 @@ if (toSendFirstNum > toSendSecondNum) { // when the firstNum > secondNum, it wil
     console.log(`ERROR. Both numbers must be positive integers for the sum to work.`);
 }
 
-/*
-for(let i = newFirstNum; i <= newSecondNum; i++) {  // this loop runs when the firstNum < secondNum.
-// need another way to loop when firstNum > secondNum
-    console.log(`The count is: ${i}`);
-    sum += i;
-    console.log(`The sum is: ${sum}`);
-
-0 = 0+1 ...1
-1 = 1+2 ...2
-3 = 3+3 ...3
-6 = 6+4 ...4
-10
 }
 
-*/
+sumAll(88, 8);
+
 
 
 
