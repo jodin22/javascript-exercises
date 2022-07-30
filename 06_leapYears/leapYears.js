@@ -33,35 +33,50 @@ which is the %.
 
 */
 
-let year = 2504;
+let year = 1900;  // && (year % 100 == 0) && (year % 400) need when >= 400
 console.log(`The year is: ${year}`);
 let remainder = 0;
-// let possibleLeapYear;
-if (Number.isInteger(year) && (year >= 0) && (year % 4 == 0)) { 
-    console.log(`${year} is divisble by 4 with no remainders. It is a possible leap year.`);
-    /* 
-    possibleLeapYear = year;
-    if ((possibleLeapYear % 100 == 0) && (possibleLeapYear % 400 == 0)) {
-        console.log(`${possibleLeapYear} is indeed a leap year.`);
-    } else {
-        console.log(`${possibleLeapYear} is not a leap year.`);
-    }
-    */
 
-/* 
-next, check if the number is divisible by 100. those are not leap years but if they are also 
-divisible by 400, then it is indeed a leap year. the ex is 1600 and 2000.
-*/
-    if (year % 100 == 0) {
-        console.log(`${year} is a century year and might not be a possible leap year.`);
-    } if (year % 400 == 0) {
-        console.log(`${year} is a century year and indeed a leap year.`);
-    } else {
-        console.log(`${year} is a century year and is not a leap year. It is not divisble by 400???`);
-    }
+if (Number.isInteger(year) && (year % 4 == 0)) {  
+    console.log(`${year} is divisble by 4 with no remainders. It is a possible leap year.`);
+    console.log(`Check if ${year} is a century year.`)
 } else {
     console.log(`${year} is not divisible by 4 and is not a possible leap year.`);
     remainder = year % 4; // this divides by 4. any remainder will be assigned to the var remainder.
     console.log(`Because the remainder is ${remainder}.`);
 }
+
+if (Number.isInteger(year) && (year % 100 == 0)) {
+    console.log(`${year} is a century year.`);
+    console.log(`Not all century years are leap years.`)
+    console.log(`It will need to also be divisible by 400 to qualify as a leap year.`);
+} else {
+    console.log(`${year} is a non-century year.`);
+}
+
+let centuryYear = 0;
+let regularYear = 0;
+if (Number.isInteger(year) && (year % 100 == 0)) {
+    centuryYear = year;
+    console.log(`${centuryYear} is a century year.` );
+} else if (Number.isInteger(year) && (year % 4 == 0)) {
+    regularYear = year;
+    console.log(`${regularYear} is a non-century year that is possibley a leap year.`);
+} else if ( ) {
+
+}
+
+/* 
+if (Number.isInteger(year) && (year % 4 == 0) && (year % 100 == 0) && (year % 400 == 0)) {
+    console.log(`${year} is a century leap year.`);
+} else if (Number.isInteger(year) && (year % 4 == 0)) {
+    console.log(`${year} is a non-century leap year.`);
+} else {
+    console.log(`${year} is not a leap year.`);
+}
+*/
+
+
+
+/*(year % 400 == 0))*/
 
