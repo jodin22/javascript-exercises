@@ -33,50 +33,37 @@ which is the %.
 
 */
 
-let year = 1900;  // && (year % 100 == 0) && (year % 400) need when >= 400
-console.log(`The year is: ${year}`);
-let remainder = 0;
+function leapYears(year) {
+// let year = 700; this was for testing. you had to manually test b/c jest doesn't work with the 
+// version of node you are using.
+    console.log(`The year is: ${year}`);
+    let remainder = 0;
+// Number.isInteger(year). this is not necessary since years will be always an integer. 
 
-if (Number.isInteger(year) && (year % 4 == 0)) {  
-    console.log(`${year} is divisble by 4 with no remainders. It is a possible leap year.`);
-    console.log(`Check if ${year} is a century year.`)
-} else {
-    console.log(`${year} is not divisible by 4 and is not a possible leap year.`);
-    remainder = year % 4; // this divides by 4. any remainder will be assigned to the var remainder.
-    console.log(`Because the remainder is ${remainder}.`);
-}
-
-if (Number.isInteger(year) && (year % 100 == 0)) {
-    console.log(`${year} is a century year.`);
-    console.log(`Not all century years are leap years.`)
-    console.log(`It will need to also be divisible by 400 to qualify as a leap year.`);
-} else {
-    console.log(`${year} is a non-century year.`);
-}
-
-let centuryYear = 0;
-let regularYear = 0;
-if (Number.isInteger(year) && (year % 100 == 0)) {
-    centuryYear = year;
-    console.log(`${centuryYear} is a century year.` );
-} else if (Number.isInteger(year) && (year % 4 == 0)) {
-    regularYear = year;
-    console.log(`${regularYear} is a non-century year that is possibley a leap year.`);
-} else if ( ) {
-
-}
-
+    if ((year % 4 == 0) && (year % 100 == 0) && (year % 400 == 0)) {  
+        console.log(`${year} is divisble by 4 and 100 and 400.`);
+        console.log(`${year} is a century leap year.`);
+    } else if ((year > 400) && (year % 4 == 0) && (year % 100 !== 0) && (year % 400 !== 0)) { 
+        console.log(`${year} is a regular leap year because it is divisible by 4.`);
+        remainder = year % 4;
+        console.log(`When divided by 4, the remainder is ${remainder}.`);
 /* 
-if (Number.isInteger(year) && (year % 4 == 0) && (year % 100 == 0) && (year % 400 == 0)) {
-    console.log(`${year} is a century leap year.`);
-} else if (Number.isInteger(year) && (year % 4 == 0)) {
-    console.log(`${year} is a non-century leap year.`);
-} else {
-    console.log(`${year} is not a leap year.`);
-}
+the first if tests for century leap years. the second if (else if) tests for regular leap years. 
+the year has to be greater than 400 b/c those before 400 are never going to be divisble by 400. 
+the last else is when all the above fails and those are not leap years. but the current console is 
+showing they are not divisible by 4 but some are divisible by 4 so you need to edit this part to 
+show a more accurate message. any year divisible by 4 is not sufficient to be a leap year. that's why
+you have the if and else if to find the years that are leap years of century years and non century 
+years. 
+
 */
+    } else {
+        console.log(`${year} is not a leap year.`); 
+        console.log(`${year} may be divisible by 4, but it must also meet the 100 and 400 rule.`);
+        remainder = year % 4;
+        console.log(`When divided by 4, the remainder is ${remainder}.`)
+    }
 
+}
 
-
-/*(year % 400 == 0))*/
-
+leapYears(700);
