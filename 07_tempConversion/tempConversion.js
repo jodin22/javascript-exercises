@@ -39,6 +39,8 @@ You can find the relevant formulae on Wikipedia.
 
 Try to find by yourself on the Internet how to round a number to 1 decimal place in JavaScript. 
 If you struggle, have a look here. https://stackoverflow.com/q/7342957/5433628
+
+https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-in-javascript
 */
 
 /* Fahrenheit to Celsius. (F - 32) x 5/9.
