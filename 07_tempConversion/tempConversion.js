@@ -46,7 +46,7 @@ Celsius to Fahrenheit. C x 9/5 + 32.
 
 */
 
-let fahrenheit = 32;
+let fahrenheit = 64;
 console.log(`${fahrenheit} is fahrenheit.`);
 let celsius = 0;
 let parenthesisPart = (fahrenheit - 32);
@@ -59,7 +59,7 @@ celsius = parenthesisPart * fractionPart;
 console.log(`${celsius} is celsius.`);
 
 let rounded = Math.round(celsius * 10) / 10;
-console.log(rounded);
+console.log(`${rounded} celsius is at 1 decimal point.`);
 console.log(typeof rounded);
 
 
