@@ -41,4 +41,27 @@ Try to find by yourself on the Internet how to round a number to 1 decimal place
 If you struggle, have a look here. https://stackoverflow.com/q/7342957/5433628
 */
 
+/* Fahrenheit to Celsius. (F - 32) x 5/9.
+Celsius to Fahrenheit. C x 9/5 + 32.
+
+*/
+
+let fahrenheit = 32;
+console.log(`${fahrenheit} is fahrenheit.`);
+let celsius = 0;
+let parenthesisPart = (fahrenheit - 32);
+console.log(parenthesisPart);
+const fractionPart = (5 / 9);
+console.log(fractionPart);
+// C = parenthesisPart * fractionPart. then round down the C to 1 decimal place.
+
+celsius = parenthesisPart * fractionPart;
+console.log(`${celsius} is celsius.`);
+
+let rounded = Math.round(celsius * 10) / 10;
+console.log(rounded);
+console.log(typeof rounded);
+
+
+
 
