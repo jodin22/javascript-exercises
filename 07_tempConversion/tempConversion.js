@@ -48,7 +48,7 @@ Celsius to Fahrenheit. C x 9/5 + 32.
 
 */
 
-let fahrenheit = 64;
+let fahrenheit = 37;
 console.log(`${fahrenheit} is fahrenheit.`);
 let celsius = 0;
 let parenthesisPart = (fahrenheit - 32);
@@ -67,35 +67,73 @@ console.log(`Celsius integer is ${typeof roundedToInteger}`);
 console.log(`${roundedToDecimal} celsius rounded to 1 decimal.`);
 console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
 
-let testNumber = 100.455;
-let testNumber2 = 100.466;
-let testNumber3 = 100.477;
-let testNumber4 = 100.444;
-let testNumber5 = 100.433;
-let testNumber6 = 100.422;
-
-let roundTestNumber = Math.round(testNumber * 100) / 100;
-console.log(`${testNumber} before rounding.`);
-console.log(`${roundTestNumber} rounds up.`);
-let roundTestNumber2 = Math.round(testNumber2 * 100) / 100;
-console.log(`${testNumber2} before rounding.`);
-console.log(`${roundTestNumber2} rounds up.`);
-let roundTestNumber3 = Math.round(testNumber3 * 100) / 100;
-console.log(`${testNumber3} before rounding.`);
-console.log(`${roundTestNumber3} rounds up.`);
-let roundTestNumber4 = Math.round(testNumber4 * 100) / 100;
-console.log(`${testNumber4} before rounding.`);
-console.log(`${roundTestNumber4} rounds down.`);
-let roundTestNumber5 = Math.round(testNumber5 * 100) / 100;
-console.log(`${testNumber5} before rounding.`);
-console.log(`${roundTestNumber5} rounds down.`);
-let roundTestNumber6 = Math.round(testNumber6 * 100) / 100;
-console.log(`${testNumber6} before rounding.`);
-console.log(`${roundTestNumber6} rounds down.`);
-
 /*  
+Math.round will round any number to the nearest integer. It will not round to decimals. Ex's are below
+with 100.5555, 100.6666, 100.4444, 100.3333 etc. When Math.round( ) is used, then the ex's 
+below will change from 100.5555 to 101. 100.6666 to 101. And 100.4444 to 100. And 100.3333 to 100.
+B/c it is only looking for integers, it will look at the next number over which is the first decimal 
+and if that decimal is 5 or higher, then it rounds the integer up. If that decimal is 4 or lower, then
+it will not round up but keep the same integer. 
+
+To round to decimals, you first decide how many decimal places you want. The ex's below, you want 
+to round to the thousandths place which is 3 decimals. B/c it is the thousandths, you would multiply 
+the number by 1000. For ex, 100.5555 * 1000 is 100555.5. With Math.round, it will then see that the 
+decimal is .5 which means it will round up the integer to become 100556. But since you want 3 decimals 
+and not an integer, you then divide it by the thousandths. So the 100556 / 1000 is 100.556. 
+The mulitplying by 1000 and then dividing by 1000 will work if you want to round to other decimals. 
+For ex, if you want to round to 1 decimal, then you would multiply by 10, then divide by 10. Same for 
+2 decimals, you mulitply by 100, then divide by 100. 
 
 */
+
+let testNumber = 100.5555;
+let testNumber2 = 100.6666;
+let testNumber3 = 100.7777;
+let testNumber4 = 100.4444;
+let testNumber5 = 100.3333;
+let testNumber6 = 100.2222;
+
+let roundTestNumber = Math.round(testNumber * 1000) / 1000;
+console.log(`${testNumber} before rounding.`);
+console.log(`${roundTestNumber} rounds up to n decimals.`);
+let roundTestNumber2 = Math.round(testNumber2 * 1000) / 1000;
+console.log(`${testNumber2} before rounding.`);
+console.log(`${roundTestNumber2} rounds up to n decimals.`);
+let roundTestNumber3 = Math.round(testNumber3 * 1000) / 1000;
+console.log(`${testNumber3} before rounding.`);
+console.log(`${roundTestNumber3} rounds up to n decimals.`);
+let roundTestNumber4 = Math.round(testNumber4 * 1000) / 1000;
+console.log(`${testNumber4} before rounding.`);
+console.log(`${roundTestNumber4} rounds down to n decimals.`);
+let roundTestNumber5 = Math.round(testNumber5 * 1000) / 1000;
+console.log(`${testNumber5} before rounding.`);
+console.log(`${roundTestNumber5} rounds down to n decimals.`);
+let roundTestNumber6 = Math.round(testNumber6 * 1000) / 1000;
+console.log(`${testNumber6} before rounding.`);
+console.log(`${roundTestNumber6} rounds down to n decimals.`);
+
+let roundTestNumberInteger = Math.round(testNumber);
+console.log(`${testNumber} before rounding.`);
+console.log(`${roundTestNumberInteger} rounds to integer.`);
+let roundTestNumberInteger2 = Math.round(testNumber2);
+console.log(`${testNumber2} before rounding.`);
+console.log(`${roundTestNumberInteger2} rounds to integer.`);
+let roundTestNumberInteger3 = Math.round(testNumber3);
+console.log(`${testNumber3} before rounding.`);
+console.log(`${roundTestNumberInteger3} rounds to integer.`);
+let roundTestNumberInteger4 = Math.round(testNumber4);
+console.log(`${testNumber4} before rounding.`);
+console.log(`${roundTestNumberInteger4} rounds to integer.`);
+let roundTestNumberInteger5 = Math.round(testNumber5);
+console.log(`${testNumber5} before rounding.`);
+console.log(`${roundTestNumberInteger5} rounds to integer.`);
+let roundTestNumberInteger6 = Math.round(testNumber6);
+console.log(`${testNumber6} before rounding.`);
+console.log(`${roundTestNumberInteger6} rounds to integer.`);
+
+
+
+
 
 
 
