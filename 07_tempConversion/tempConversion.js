@@ -52,17 +52,52 @@ let fahrenheit = 64;
 console.log(`${fahrenheit} is fahrenheit.`);
 let celsius = 0;
 let parenthesisPart = (fahrenheit - 32);
-console.log(parenthesisPart);
+console.log(`The parenthesis part ${parenthesisPart}`);
 const fractionPart = (5 / 9);
-console.log(fractionPart);
-// C = parenthesisPart * fractionPart. then round down the C to 1 decimal place.
+console.log(`The fraction part ${fractionPart}`);
+// C = parenthesisPart * fractionPart. then round the C to 1 decimal place.
 
 celsius = parenthesisPart * fractionPart;
-console.log(`${celsius} is celsius.`);
+console.log(`${celsius} is celsius before rounding.`);
 
-let rounded = Math.round(celsius * 10) / 10;
-console.log(`${rounded} celsius is at 1 decimal point.`);
-console.log(typeof rounded);
+let roundedToDecimal = Math.round(celsius * 10) / 10;
+let roundedToInteger = Math.round(celsius);
+console.log(`${roundedToInteger} celsius rounded to the integer.`);
+console.log(`Celsius integer is ${typeof roundedToInteger}`);
+console.log(`${roundedToDecimal} celsius rounded to 1 decimal.`);
+console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
+
+let testNumber = 100.455;
+let testNumber2 = 100.466;
+let testNumber3 = 100.477;
+let testNumber4 = 100.444;
+let testNumber5 = 100.433;
+let testNumber6 = 100.422;
+
+let roundTestNumber = Math.round(testNumber * 100) / 100;
+console.log(`${testNumber} before rounding.`);
+console.log(`${roundTestNumber} rounds up.`);
+let roundTestNumber2 = Math.round(testNumber2 * 100) / 100;
+console.log(`${testNumber2} before rounding.`);
+console.log(`${roundTestNumber2} rounds up.`);
+let roundTestNumber3 = Math.round(testNumber3 * 100) / 100;
+console.log(`${testNumber3} before rounding.`);
+console.log(`${roundTestNumber3} rounds up.`);
+let roundTestNumber4 = Math.round(testNumber4 * 100) / 100;
+console.log(`${testNumber4} before rounding.`);
+console.log(`${roundTestNumber4} rounds down.`);
+let roundTestNumber5 = Math.round(testNumber5 * 100) / 100;
+console.log(`${testNumber5} before rounding.`);
+console.log(`${roundTestNumber5} rounds down.`);
+let roundTestNumber6 = Math.round(testNumber6 * 100) / 100;
+console.log(`${testNumber6} before rounding.`);
+console.log(`${roundTestNumber6} rounds down.`);
+
+/*  
+
+*/
+
+
 
 
 
