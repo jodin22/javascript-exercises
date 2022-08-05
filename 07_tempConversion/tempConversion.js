@@ -46,7 +46,7 @@ https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-
 // The below part is for Fahrenheit to Celsius.
 // Fahrenheit to Celsius. (F - 32) x 5/9.
 
-let fahrenheitIn = 47;
+let fahrenheitIn = -100;
 console.log(`${fahrenheitIn} is fahrenheit.`);
 let celsiusOut = 0;
 let parenthesisPart = (fahrenheitIn - 32);
@@ -68,13 +68,19 @@ console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
 // The below is for Celsius to Fahrenheit. 
 // Celsius to Fahrenheit. C x 9/5 + 32.
 
-let celsiusIn = 15;
+let celsiusIn = -10;
 console.log(`${celsiusIn} is celsius.`);
 let fahrenheitOut = 0;
 const fractionPartCelsius = (9 / 5);
 console.log(`The fraction part ${fractionPartCelsius}`);
 fahrenheitOut = celsiusIn * fractionPartCelsius + 32;
 console.log(`${fahrenheitOut} is fahrenheit before rounding.`);
+
+let roundFahrenheitToDecimal = Math.round(fahrenheitOut * 10) / 10;
+let roundFahrenheitToInteger = Math.round(fahrenheitOut);
+console.log(`${roundFahrenheitToInteger} fahrenheit rounded to integer.`);
+console.log(`${roundFahrenheitToDecimal} fahrenheit rounded to decimal.`);
+
 
 
 
