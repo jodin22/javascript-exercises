@@ -46,46 +46,48 @@ https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-
 // The below part is for Fahrenheit to Celsius.
 // Fahrenheit to Celsius. (F - 32) x 5/9.
 
-let fahrenheitIn = -100;
-console.log(`${fahrenheitIn} is fahrenheit.`);
-let celsiusOut = 0;
-let parenthesisPart = (fahrenheitIn - 32);
-console.log(`The parenthesis part ${parenthesisPart}`);
-const fractionPartFahrenheit = (5 / 9);
-console.log(`The fraction part ${fractionPartFahrenheit}`);
+function ftoc(fahrenheitIn) {
+// let fahrenheitIn = -100;
+  console.log(`${fahrenheitIn} is fahrenheit.`);
+  let celsiusOut = 0;
+  let parenthesisPart = (fahrenheitIn - 32);
+  console.log(`The parenthesis part ${parenthesisPart}`);
+  const fractionPartFahrenheit = (5 / 9);
+  console.log(`The fraction part ${fractionPartFahrenheit}`);
 // C = parenthesisPart * fractionPart. then round the C to 1 decimal place.
 
-celsiusOut = parenthesisPart * fractionPartFahrenheit;
-console.log(`${celsiusOut} is celsius before rounding.`);
+  celsiusOut = parenthesisPart * fractionPartFahrenheit;
+  console.log(`${celsiusOut} is celsius before rounding.`);
 
-let roundedToDecimal = Math.round(celsiusOut * 10) / 10;
-let roundedToInteger = Math.round(celsiusOut);
-console.log(`${roundedToInteger} celsius rounded to the integer.`);
-console.log(`Celsius integer is ${typeof roundedToInteger}`);
-console.log(`${roundedToDecimal} celsius rounded to 1 decimal.`);
-console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
+  let roundedToDecimal = Math.round(celsiusOut * 10) / 10;
+  let roundedToInteger = Math.round(celsiusOut);
+  console.log(`${roundedToInteger} celsius rounded to the integer.`);
+  console.log(`Celsius integer is ${typeof roundedToInteger}`);
+  console.log(`${roundedToDecimal} celsius rounded to 1 decimal.`);
+  console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
+}
+
+ftoc(-74.3);
 
 // The below is for Celsius to Fahrenheit. 
 // Celsius to Fahrenheit. C x 9/5 + 32.
 
-let celsiusIn = -10;
-console.log(`${celsiusIn} is celsius.`);
-let fahrenheitOut = 0;
-const fractionPartCelsius = (9 / 5);
-console.log(`The fraction part ${fractionPartCelsius}`);
-fahrenheitOut = celsiusIn * fractionPartCelsius + 32;
-console.log(`${fahrenheitOut} is fahrenheit before rounding.`);
+function ctof(celsiusIn) {
+// let celsiusIn = -10;
+  console.log(`${celsiusIn} is celsius.`);
+  let fahrenheitOut = 0;
+  const fractionPartCelsius = (9 / 5);
+  console.log(`The fraction part ${fractionPartCelsius}`);
+  fahrenheitOut = celsiusIn * fractionPartCelsius + 32;
+  console.log(`${fahrenheitOut} is fahrenheit before rounding.`);
 
-let roundFahrenheitToDecimal = Math.round(fahrenheitOut * 10) / 10;
-let roundFahrenheitToInteger = Math.round(fahrenheitOut);
-console.log(`${roundFahrenheitToInteger} fahrenheit rounded to integer.`);
-console.log(`${roundFahrenheitToDecimal} fahrenheit rounded to decimal.`);
+  let roundFahrenheitToDecimal = Math.round(fahrenheitOut * 10) / 10;
+  let roundFahrenheitToInteger = Math.round(fahrenheitOut);
+  console.log(`${roundFahrenheitToInteger} fahrenheit rounded to integer.`);
+  console.log(`${roundFahrenheitToDecimal} fahrenheit rounded to decimal.`);
+}
 
-
-
-
-
-
+ctof(82.9);
 
 /*  
 The below is an explanation of how rounding works.
