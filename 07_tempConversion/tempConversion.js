@@ -43,31 +43,47 @@ If you struggle, have a look here. https://stackoverflow.com/q/7342957/5433628
 https://stackoverflow.com/questions/7342957/how-do-you-round-to-1-decimal-place-in-javascript
 */
 
-/* Fahrenheit to Celsius. (F - 32) x 5/9.
-Celsius to Fahrenheit. C x 9/5 + 32.
+// The below part is for Fahrenheit to Celsius.
+// Fahrenheit to Celsius. (F - 32) x 5/9.
 
-*/
-
-let fahrenheit = 37;
-console.log(`${fahrenheit} is fahrenheit.`);
-let celsius = 0;
-let parenthesisPart = (fahrenheit - 32);
+let fahrenheitIn = 47;
+console.log(`${fahrenheitIn} is fahrenheit.`);
+let celsiusOut = 0;
+let parenthesisPart = (fahrenheitIn - 32);
 console.log(`The parenthesis part ${parenthesisPart}`);
-const fractionPart = (5 / 9);
-console.log(`The fraction part ${fractionPart}`);
+const fractionPartFahrenheit = (5 / 9);
+console.log(`The fraction part ${fractionPartFahrenheit}`);
 // C = parenthesisPart * fractionPart. then round the C to 1 decimal place.
 
-celsius = parenthesisPart * fractionPart;
-console.log(`${celsius} is celsius before rounding.`);
+celsiusOut = parenthesisPart * fractionPartFahrenheit;
+console.log(`${celsiusOut} is celsius before rounding.`);
 
-let roundedToDecimal = Math.round(celsius * 10) / 10;
-let roundedToInteger = Math.round(celsius);
+let roundedToDecimal = Math.round(celsiusOut * 10) / 10;
+let roundedToInteger = Math.round(celsiusOut);
 console.log(`${roundedToInteger} celsius rounded to the integer.`);
 console.log(`Celsius integer is ${typeof roundedToInteger}`);
 console.log(`${roundedToDecimal} celsius rounded to 1 decimal.`);
 console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
 
+// The below is for Celsius to Fahrenheit. 
+// Celsius to Fahrenheit. C x 9/5 + 32.
+
+let celsiusIn = 15;
+console.log(`${celsiusIn} is celsius.`);
+let fahrenheitOut = 0;
+const fractionPartCelsius = (9 / 5);
+console.log(`The fraction part ${fractionPartCelsius}`);
+fahrenheitOut = celsiusIn * fractionPartCelsius + 32;
+console.log(`${fahrenheitOut} is fahrenheit before rounding.`);
+
+
+
+
+
+
 /*  
+The below is an explanation of how rounding works.
+
 Math.round will round any number to the nearest integer. It will not round to decimals. Ex's are below
 with 100.5555, 100.6666, 100.4444, 100.3333 etc. When Math.round( ) is used, then the ex's 
 below will change from 100.5555 to 101. 100.6666 to 101. And 100.4444 to 100. And 100.3333 to 100.
