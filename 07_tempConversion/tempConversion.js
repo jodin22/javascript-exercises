@@ -67,7 +67,7 @@ function ftoc(fahrenheitIn) {
   console.log(`Celsius rounded is ${typeof roundedToDecimal}`);
 }
 
-ftoc(68);
+ftoc(-23);
 
 // The below is for Celsius to Fahrenheit. 
 // Celsius to Fahrenheit. C x 9/5 + 32.
@@ -87,7 +87,7 @@ function ctof(celsiusIn) {
   console.log(`${roundFahrenheitToDecimal} fahrenheit rounded to decimal.`);
 }
 
-ctof(23);
+ctof(-11);
 
 /*  
 The below is an explanation of how rounding works.
