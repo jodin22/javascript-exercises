@@ -1,5 +1,5 @@
 /*
-const add = function() { // use spread operator bc you don't know how many numbers they will add
+const add = function() { 
 	
 };
 
