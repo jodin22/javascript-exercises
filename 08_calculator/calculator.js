@@ -41,7 +41,7 @@ const add = function(...futureNumbers) {
   return total; // need to return something so the html can display it
 };
 
-const showNumbers = add(12, 11, 78, 0, -59, -2, 100, -34); // for now, you're sending numbers this way, but later see if you can use 
+const showTotal = add(-34, -5, -98, 14567, 11, -2900, 100); // for now, you're sending numbers this way, but later see if you can use 
 // a prompt
 
 const numbers = document.createElement("p");
@@ -49,8 +49,8 @@ const total = document.createElement("p");
 const div = document.createElement("div");
 const addDiv = div.classList.add("add"); 
 
-numbers.textContent = `Numbers: ${showNumbers}`; // for now both show the total, need to show one line as the group of numbers
-total.textContent = `Total: ${showNumbers}`; // and the next line to be the total
+numbers.textContent = `Numbers: ${showTotal}`; // for now both show the total, need to show one line as the group of numbers
+total.textContent = `Total: ${showTotal}`; // and the next line to be the total
 
 document.body.appendChild(div);
 div.appendChild(numbers);
