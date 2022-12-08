@@ -35,31 +35,35 @@ const add = function(...futureNumbers) {
   // you won't be able to use reduce
   console.log(toAdd); // verifies that it is the same group of numbers from console line 32
   const total = toAdd.reduce((initialVal, nextVal) => { // reduce is adding up all the numbers in your array
-    return initialVal + nextVal; // this return is only inside the arrow function so won't interfere with the return at line 41
-  }, 0); // this is the initial value of 0. you need this or else it will use the first index as the initial val and start adding 
-  // from the 2nd index instead of the first index? unsure exactly, re-read the mozillla docs?
+    return initialVal + nextVal; // this return is only inside the arrow function so won't interfere with the return at line 44
+  }, 0); // the 0 is your initial val for the accumulator. if you don't have this, then it will use index 0 as the initial val 
+  // for the accumulator and then add index 1 to it and then you get a new val for the accumulator. then it adds index 2 to it 
+  // and you get a new val for the accumulator. then it adds index 3 to it and so on until the length of the array. for this,
+  // you really don't need the 0 bc you're not dealing with objects in the array elements. when you have objects in the array
+  // elements, then you need an initial val for the accumulator
   return total; // need to return something so the html can display it
 };
 
-const enteredNumbers = function(...futureNumbers) { // ok to use ...futureNumbers in this function as the above function bc the
+const enteredNumbers = function(...futureNumbers) { // ok to use ...futureNumbers here; the same as the above function bc the
   // parameter names are only good inside the function. 
   console.log(futureNumbers); // shows all your numbers you entered
   const toShow = futureNumbers; // put into a const so you can return the results of the function to the line that was calling it
   return toShow;
 };
 
-const showEnteredNumbers = enteredNumbers(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); // for now, you are copy pasting the numbers
+const showEnteredNumbersAdd = enteredNumbers(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); // for now, you are copy pasting the numbers
 // for both functions. later when you build the ui, see if you can use a prompt or form.  also might need to cast as Number or
 // floating number to allow for many decimals? re-read the mdn docs for casting
-const showTotal = add(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); 
+const showTotalAdd = add(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); 
+console.log(showTotalAdd);
 
 const numbers = document.createElement("p");
 const total = document.createElement("p");
 const div = document.createElement("div");
 const addDiv = div.classList.add("add"); 
 
-numbers.textContent = `Numbers: ${showEnteredNumbers}`; // one line as the group of numbers
-total.textContent = `Total: ${showTotal}`; // and the next line to be the total
+numbers.textContent = `Numbers to add: ${showEnteredNumbersAdd}`; // one line as the group of numbers
+total.textContent = `Total: ${showTotalAdd}`; // and the next line to be the total
 
 document.body.appendChild(div);
 div.appendChild(numbers);
@@ -79,15 +83,33 @@ div.appendChild(total);
 
 const subtract = function(...futureNumbers) {
   console.log(futureNumbers);
-  const toSubtract = futureNumbers;
-  console.log(toSubtract);
+  const toSubtract = futureNumbers; // the list of numbers is in an array format but has no name yet. now give it a name so you 
+  // can reference the array's name and use reduce or any other type of array method
+  console.log(toSubtract); // verifies the same list of numbers from line 85
   const total = toSubtract.reduce((initialVal, nextVal) =>{
     return initialVal - nextVal;
   }); // unlike the addition, here we don't give a starting value for initialVal aka accumulator
   return total;
 };
 
-console.log(subtract(234, -34, 0, 0.098790, 0.00980, 21, 1));
+const showEnteredNumbersSubtract = enteredNumbers(-6, 3, 7, -1, -56, -23);
+const showTotalSubtract = subtract(-6, 3, 7, -1, -56, -23);
+console.log(showTotalSubtract);
+
+const numbersSubtract = document.createElement("p");
+const totalSubtract = document.createElement("p");
+const divSubtract = document.createElement("div");
+const classDivSubtract = divSubtract.classList.add("subtract");
+
+numbersSubtract.textContent = `Numbers to subtract: ${showEnteredNumbersSubtract}`;
+totalSubtract.textContent = `Total: ${showTotalSubtract}`;
+
+// append divSubtract as the second child of body so it is not under the first div of addition
+// then append the other parts of the subtraction to the divSubtract so add and subtract will be separate from each 
+// other. or else subtract will become a child of add. you want them to be children of body and not of each other.
+// in other words, add and subtract will be siblings
+
+
 
 /* uncomment later when doing the tests
 // Do not edit below this line
