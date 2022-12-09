@@ -51,10 +51,10 @@ const enteredNumbers = function(...futureNumbers) { // ok to use ...futureNumber
   return toShow;
 };
 
-const showEnteredNumbersAdd = enteredNumbers(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); // for now, you are copy pasting the numbers
+const showEnteredNumbersAdd = enteredNumbers(2, -35, 5.1456, -896.147); // for now, you are copy pasting the numbers
 // for both functions. later when you build the ui, see if you can use a prompt or form.  also might need to cast as Number or
 // floating number to allow for many decimals? re-read the mdn docs for casting
-const showTotalAdd = add(-6, -8, -2.9, 31, 56, 0, 100, -0.45609); 
+const showTotalAdd = add(2, -35, 5.1456, -896.147); 
 console.log(showTotalAdd);
 
 const numbers = document.createElement("p");
@@ -92,8 +92,8 @@ const subtract = function(...futureNumbers) {
   return total;
 };
 
-const showEnteredNumbersSubtract = enteredNumbers(-6, 3, 7, -1, -56, -23);
-const showTotalSubtract = subtract(-6, 3, 7, -1, -56, -23);
+const showEnteredNumbersSubtract = enteredNumbers(78, -190, 34.8876, -800.144);
+const showTotalSubtract = subtract(78, -190, 34.8876, -800.144);
 console.log(showTotalSubtract);
 
 const numbersSubtract = document.createElement("p");
@@ -109,7 +109,9 @@ totalSubtract.textContent = `Total: ${showTotalSubtract}`;
 // other. or else subtract will become a child of add. you want them to be children of body and not of each other.
 // in other words, add and subtract will be siblings
 
-
+document.body.appendChild(divSubtract);
+divSubtract.appendChild(numbersSubtract);
+divSubtract.appendChild(totalSubtract);
 
 /* uncomment later when doing the tests
 // Do not edit below this line
