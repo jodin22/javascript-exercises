@@ -113,6 +113,28 @@ document.body.appendChild(divSubtract);
 divSubtract.appendChild(numbersSubtract);
 divSubtract.appendChild(totalSubtract);
 
+// the sum function seems to be very similar to the addition one? in the jest test file, the add function is only testing 2 
+// numbers. but the sum function is testing more than 2.
+
+// use rest parameters again so the function receives any quantity of numbers and will put them in an array so you can use 
+// the reduce method or other array methods.
+
+const sum = function(...futureNumbers) {  // use rest parameters bc you don't know how many numbers they want to add
+  console.log(futureNumbers); // show the numbers that the function received
+  const toAdd = futureNumbers; // need to give the list of numbers a name so you can use array methods
+  const totalAdd = toAdd.reduce((accumulator, nextVal) => {
+    return accumulator + nextVal; // this return is only inside the arrow function. it won't interfere with the return at line 128
+  });	
+  return totalAdd; // sends the sum to whichever line/var called it
+};
+
+const showEnteredNumbersSum = enteredNumbers(8, 96, 800, 12);
+const showTotalSum = sum(8, 96, 800, 12);
+console.log(showEnteredNumbersSum);
+console.log(showTotalSum);
+
+
+
 /* uncomment later when doing the tests
 // Do not edit below this line
 module.exports = {
