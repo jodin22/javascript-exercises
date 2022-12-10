@@ -122,18 +122,28 @@ divSubtract.appendChild(totalSubtract);
 const sum = function(...futureNumbers) {  // use rest parameters bc you don't know how many numbers they want to add
   console.log(futureNumbers); // show the numbers that the function received
   const toAdd = futureNumbers; // need to give the list of numbers a name so you can use array methods
+  console.log(toAdd); // verifies the same list is in the array that was received from the beginning of the function
   const totalAdd = toAdd.reduce((accumulator, nextVal) => {
     return accumulator + nextVal; // this return is only inside the arrow function. it won't interfere with the return at line 128
   });	
   return totalAdd; // sends the sum to whichever line/var called it
 };
 
-const showEnteredNumbersSum = enteredNumbers(8, 96, 800, 12);
-const showTotalSum = sum(8, 96, 800, 12);
-console.log(showEnteredNumbersSum);
+const showEnteredNumbersSum = enteredNumbers(-12.4456, -2.115, -0.87, -100.7);
+const showTotalSum = sum(-12.4456, -2.115, -0.87, -100.7);
 console.log(showTotalSum);
 
+const numberSum = document.createElement("p");
+const totalSum = document.createElement("p");
+const divSum = document.createElement("div");
+const classDivSum = divSum.classList.add("sum");
 
+numberSum.textContent = `Numbers to add: ${showEnteredNumbersSum}`;
+totalSum.textContent = `Total: ${showTotalSum}`;
+
+document.body.appendChild(divSum);
+divSum.appendChild(numberSum);
+divSum.appendChild(totalSum);
 
 /* uncomment later when doing the tests
 // Do not edit below this line
