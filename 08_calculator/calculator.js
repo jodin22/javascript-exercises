@@ -166,8 +166,8 @@ const multiply = function(...futureNumbers) {
   // interfere with the return totalMultiply that will send the final value to whichever line called this function
 };
 
-const showEnteredNumbersMultiply = enteredNumbers(2, 4, 6, 8, 10, 12, 14);
-const showTotalMultiply = multiply(2, 4, 6, 8, 10, 12, 14);
+const showEnteredNumbersMultiply = enteredNumbers(50, -71, 5.1479, -123.41);
+const showTotalMultiply = multiply(50, -71, 5.1479, -123.41);
 console.log(showTotalMultiply);
 
 const numberMultiply = document.createElement("p"); // create the elements
@@ -181,6 +181,39 @@ totalMultiply.textContent = `Total: ${showTotalMultiply}`;
 document.body.appendChild(divMultiply); // show the content
 divMultiply.appendChild(numberMultiply);
 divMultiply.appendChild(totalMultiply);
+
+// an ex will be power(2,3) which will do 2 * 2 * 2. 
+
+const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the power of 0 is 1. 2 to the power of any other number
+  // is multiplying 2 over and over again
+  console.log(`${base},${exponent}`); // shows what was received
+  const exponentZero = 1; // keep as 1 bc a number to the power of 0 is always 1. for now, test with positive exponents. later
+  // will need to test with negative exponents
+  // let newResult = 0; maybe don't need this for now
+  if (exponent === 0) {
+    return exponentZero; // return 1
+  } else if (exponent === 1) {
+    return base; // return the base
+  } else { // do a loop that will multiply the base times itself however many times that is shown in the exponent
+    let result = 1; // initialize this before the loop
+    for(let i = 1; i <= exponent; i++) { 
+      result = result * base; // first iteration will take 1 * base and assign it to result which will just be the base.
+      // the 2nd iteration now has base * base and this will put it to the result. the third iteration takes the new result which 
+      // was base * base and will multiply another base to it. then it assigns to the result again. the 4th iteration will take 
+      // this new result and multiply another base to it and assign it to the result. this keeps repeating until the counter var
+      // equals the exponent. 
+      console.log(`Iteration ${i}: ${result}`); // this is helpful to see each iteration print to the console with the result
+    };
+    
+    return result; // this is what is returned to whichever line called the function. this function has several returns, but 
+    // they don't interfere with each other because each return is inside of it's own area of { }
+  };
+
+};
+
+const showResult = power(4, 3);
+console.log(showResult);
+
 
 
 /* uncomment later when doing the tests
