@@ -57,15 +57,15 @@ const showEnteredNumbersAdd = enteredNumbers(2, -35, 5.1456, -896.147); // for n
 const showTotalAdd = add(2, -35, 5.1456, -896.147); 
 console.log(showTotalAdd);
 
-const numbers = document.createElement("p");
+const numbers = document.createElement("p");  // creating your elements
 const total = document.createElement("p");
 const div = document.createElement("div");
 const addDiv = div.classList.add("add"); 
 
-numbers.textContent = `Numbers to add: ${showEnteredNumbersAdd}`; // one line as the group of numbers
+numbers.textContent = `Numbers to add: ${showEnteredNumbersAdd}`; // fill with content. one line as the group of numbers.
 total.textContent = `Total: ${showTotalAdd}`; // and the next line to be the total
 
-document.body.appendChild(div);
+document.body.appendChild(div); // show your content
 div.appendChild(numbers);
 div.appendChild(total);
 
@@ -96,12 +96,12 @@ const showEnteredNumbersSubtract = enteredNumbers(78, -190, 34.8876, -800.144);
 const showTotalSubtract = subtract(78, -190, 34.8876, -800.144);
 console.log(showTotalSubtract);
 
-const numbersSubtract = document.createElement("p");
+const numbersSubtract = document.createElement("p"); // create your elements
 const totalSubtract = document.createElement("p");
 const divSubtract = document.createElement("div");
 const classDivSubtract = divSubtract.classList.add("subtract");
 
-numbersSubtract.textContent = `Numbers to subtract: ${showEnteredNumbersSubtract}`;
+numbersSubtract.textContent = `Numbers to subtract: ${showEnteredNumbersSubtract}`; // fill with content
 totalSubtract.textContent = `Total: ${showTotalSubtract}`;
 
 // append divSubtract as the second child of body so it is not under the first div of addition
@@ -109,7 +109,7 @@ totalSubtract.textContent = `Total: ${showTotalSubtract}`;
 // other. or else subtract will become a child of add. you want them to be children of body and not of each other.
 // in other words, add and subtract will be siblings
 
-document.body.appendChild(divSubtract);
+document.body.appendChild(divSubtract); // show the content
 divSubtract.appendChild(numbersSubtract);
 divSubtract.appendChild(totalSubtract);
 
@@ -124,26 +124,64 @@ const sum = function(...futureNumbers) {  // use rest parameters bc you don't kn
   const toAdd = futureNumbers; // need to give the list of numbers a name so you can use array methods
   console.log(toAdd); // verifies the same list is in the array that was received from the beginning of the function
   const totalAdd = toAdd.reduce((accumulator, nextVal) => {
-    return accumulator + nextVal; // this return is only inside the arrow function. it won't interfere with the return at line 128
+    return accumulator + nextVal; // this return is only inside the arrow function. it won't interfere with the return at line 129
   });	
   return totalAdd; // sends the sum to whichever line/var called it
 };
 
-const showEnteredNumbersSum = enteredNumbers(-12.4456, -2.115, -0.87, -100.7);
-const showTotalSum = sum(-12.4456, -2.115, -0.87, -100.7);
+const showEnteredNumbersSum = enteredNumbers(-145, 76, 52.789, -1.41);
+const showTotalSum = sum(-145, 76, 52.789, -1.41);
 console.log(showTotalSum);
 
-const numberSum = document.createElement("p");
+const numberSum = document.createElement("p"); // create the elements
 const totalSum = document.createElement("p");
 const divSum = document.createElement("div");
 const classDivSum = divSum.classList.add("sum");
 
-numberSum.textContent = `Numbers to add: ${showEnteredNumbersSum}`;
+numberSum.textContent = `Numbers to add: ${showEnteredNumbersSum}`; // fill with content
 totalSum.textContent = `Total: ${showTotalSum}`;
 
-document.body.appendChild(divSum);
+document.body.appendChild(divSum); // show the content
 divSum.appendChild(numberSum);
 divSum.appendChild(totalSum);
+
+// the multiply will be similar to the previous functions. you can use reduce and edit the sign from + and - to *. the main idea 
+// is the function will receive any quantity of integers or decimals and mulitply them. bc you don't know how many they will enter,
+// it is best to use rest parameters. this way the received values are put into an array and you can iterate through them with 
+// reduce.
+
+const multiply = function(...futureNumbers) {
+  console.log(futureNumbers); // to see what was received
+  const toMultiply = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
+  // and then apply array methods
+  console.log({toMultiply}); // verify that this set of numbers is the same as what was received. {} will show the name of the 
+  // variable and the value. without {}, only shows the value
+  const totalMultiply = toMultiply.reduce((accumulator, nextVal)=> { // since there is no starting value for the accumulator, 
+    return accumulator * nextVal; // it will take index 0 as the first val. then accumulate index 1 to it. then this new val 
+    // will be the accumulator and will go to index 2 and accumulate that. and then you have a new val and will accumulate with 
+    // the next index until the length of the array. 
+  }); // this line will show a value if you need to accumulate objects that are items in an array. for now, your items in the 
+  // array are non-objects and just numbers
+  return totalMultiply; // having 2 returns is ok bc the return accumulator line is within the arrow function so it doesn't 
+  // interfere with the return totalMultiply that will send the final value to whichever line called this function
+};
+
+const showEnteredNumbersMultiply = enteredNumbers(2, 4, 6, 8, 10, 12, 14);
+const showTotalMultiply = multiply(2, 4, 6, 8, 10, 12, 14);
+console.log(showTotalMultiply);
+
+const numberMultiply = document.createElement("p"); // create the elements
+const totalMultiply = document.createElement("p");
+const divMultiply = document.createElement("div");
+const classDivMultiply = divMultiply.classList.add("multiply");
+
+numberMultiply.textContent = `Numbers to multiply: ${showEnteredNumbersMultiply}`; // fill with content
+totalMultiply.textContent = `Total: ${showTotalMultiply}`;
+
+document.body.appendChild(divMultiply); // show the content
+divMultiply.appendChild(numberMultiply);
+divMultiply.appendChild(totalMultiply);
+
 
 /* uncomment later when doing the tests
 // Do not edit below this line
