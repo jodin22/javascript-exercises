@@ -182,7 +182,9 @@ document.body.appendChild(divMultiply); // show the content
 divMultiply.appendChild(numberMultiply);
 divMultiply.appendChild(totalMultiply);
 
-// an ex will be power(2,3) which will do 2 * 2 * 2. 
+// an ex will be power(2,3) which will do 2 * 2 * 2. for power(2, -3), this will do 2 * 2 * 2 = 8 and then take the 8 and make it
+// 1/8. a negative power still multiplies the base as many times as the number shows but bc of the negative sign, it makes it a 
+// division to 1/something.
 
 const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the power of 0 is 1. 2 to the power of any other number
   // is multiplying 2 over and over again
@@ -191,10 +193,10 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
   // will need to test with negative exponents
   // let newResult = 0; maybe don't need this for now
   if (exponent === 0) {
-    return exponentZero; // return 1
+    return exponentZero; // return 1 for any number to the power of 0
   } else if (exponent === 1) {
-    return base; // return the base
-  } else { // do a loop that will multiply the base times itself however many times that is shown in the exponent
+    return base; // return the base for any number to the power of 1
+  } else if (exponent > 0) { // do a loop that will multiply the base times itself however many times that is shown in the exponent
     let result = 1; // initialize this before the loop
     for(let i = 1; i <= exponent; i++) { 
       result = result * base; // first iteration will take 1 * base and assign it to result which will just be the base.
@@ -204,17 +206,38 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
       // equals the exponent. 
       console.log(`Iteration ${i}: ${result}`); // this is helpful to see each iteration print to the console with the result
     };
-    
+    return result; // this is what is returned to whichever line called the function. this function has several returns, but 
+    // they don't interfere with each other because each return is inside of it's own area of { }
+  } else if (exponent < 0) {
+    // for the negative exponents, put the result in a var. then do 1/var to get the answer
+    let result = 1;
+    for(let i = -1; i >= exponent; i--) {
+      result = result * base;
+      console.log(`Iteration ${i}: ${result}`);
+    };
     return result; // this is what is returned to whichever line called the function. this function has several returns, but 
     // they don't interfere with each other because each return is inside of it's own area of { }
   };
 
+
 };
 
-const showResult = power(4, 3);
-console.log(showResult);
+const showEnteredNumberPower = enteredNumbers(-3, -11);
+const showTotalPower = power(-3, -11);
+console.log(showEnteredNumberPower);
+console.log(showTotalPower);
 
+const numberPower = document.createElement("p");
+const totalPower = document.createElement("p");
+const divPower = document.createElement("div");
+const classDivPower = divPower.classList.add("power");
 
+numberPower.textContent = `Numbers to power: ${showEnteredNumberPower}`;
+totalPower.textContent = `Total: ${showTotalPower}`;
+
+document.body.appendChild(divPower);
+divPower.appendChild(numberPower);
+divPower.appendChild(totalPower);
 
 /* uncomment later when doing the tests
 // Do not edit below this line
