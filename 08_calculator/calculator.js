@@ -209,21 +209,23 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
     return result; // this is what is returned to whichever line called the function. this function has several returns, but 
     // they don't interfere with each other because each return is inside of it's own area of { }
   } else if (exponent < 0) {
-    // for the negative exponents, put the result in a var. then do 1/var to get the answer
+    // for the negative exponents, put the result in a var. then do 1/var to get the answer.
     let result = 1;
     for(let i = -1; i >= exponent; i--) {
       result = result * base;
       console.log(`Iteration ${i}: ${result}`);
     };
-    return result; // this is what is returned to whichever line called the function. this function has several returns, but 
+    let oneDivByResult = 1/result;
+    console.log(`1 divided by ${result}`);
+    return oneDivByResult; // this is what is returned to whichever line called the function. this function has several returns, but 
     // they don't interfere with each other because each return is inside of it's own area of { }
   };
 
 
 };
 
-const showEnteredNumberPower = enteredNumbers(-3, -11);
-const showTotalPower = power(-3, -11);
+const showEnteredNumberPower = enteredNumbers(2, -8);
+const showTotalPower = power(2, -8);
 console.log(showEnteredNumberPower);
 console.log(showTotalPower);
 
