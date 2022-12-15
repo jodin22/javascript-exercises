@@ -221,23 +221,22 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
     // they don't interfere with each other because each return is inside of it's own area of { }
   };
 
-
 };
 
-const showEnteredNumberPower = enteredNumbers(2, -8);
-const showTotalPower = power(2, -8);
+const showEnteredNumberPower = enteredNumbers(-10.6, -5); 
+const showTotalPower = power(-10.6, -5);
 console.log(showEnteredNumberPower);
 console.log(showTotalPower);
 
-const numberPower = document.createElement("p");
+const numberPower = document.createElement("p"); // create the elements
 const totalPower = document.createElement("p");
 const divPower = document.createElement("div");
 const classDivPower = divPower.classList.add("power");
 
-numberPower.textContent = `Numbers to power: ${showEnteredNumberPower}`;
+numberPower.textContent = `Numbers to power: ${showEnteredNumberPower}`; // fill with content
 totalPower.textContent = `Total: ${showTotalPower}`;
 
-document.body.appendChild(divPower);
+document.body.appendChild(divPower);  // show the content
 divPower.appendChild(numberPower);
 divPower.appendChild(totalPower);
 
