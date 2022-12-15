@@ -223,8 +223,8 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
 
 };
 
-const showEnteredNumberPower = enteredNumbers(-10.6, -5); 
-const showTotalPower = power(-10.6, -5);
+const showEnteredNumberPower = enteredNumbers(8, 6); 
+const showTotalPower = power(8, 6);
 console.log(showEnteredNumberPower);
 console.log(showTotalPower);
 
@@ -239,6 +239,34 @@ totalPower.textContent = `Total: ${showTotalPower}`;
 document.body.appendChild(divPower);  // show the content
 divPower.appendChild(numberPower);
 divPower.appendChild(totalPower);
+
+
+// factorial ex for 5 would be 5 * 4 * 3 * 2 * 1 = 120. also factorial of 0 is 1. only do postive integers on this one.
+
+const factorial = function(number) { // it receives an integer
+  // test for a positive integer. do this later. first break apart the integer
+  const integerFillArray = [];  // an empty array which will be filled in by the loop
+  console.log(integerFillArray);
+  for(let i = 1; i <= number; i++) {  // the counter will go from 1 to n. where n is the actual number so it counts up by 1
+    console.log(`${i}`); // shows each integer count
+    integerFillArray.push(i);  // at each integer, it pushes that value into the array so for 5, it will push in 1, 2, 3, 4, 5
+  };
+  console.log(integerFillArray);  // shows the array with the integers. now that it is in an array, you can use reduce to 
+  // multiply them all together (see lin 153 for the previous multiply function). this may work for most cases, but you will 
+  // need a separate part of 0 bc 0 factorial is 1.
+
+  const totalMultiplyArray = integerFillArray.reduce((accumulator, nextVal) =>{
+    return accumulator * nextVal;
+  });
+
+  console.log(totalMultiplyArray);
+};
+
+factorial(21);
+
+// receive a number, then break it down from 1 to that number. for ex, when you receive 5, then it will show 1, 2, 3, 4, 5 and then
+// multiply them all together.
+
 
 /* uncomment later when doing the tests
 // Do not edit below this line
