@@ -260,9 +260,11 @@ const factorial = function(number) { // it receives an integer
   });
 
   console.log(totalMultiplyArray);
+  return totalMultiplyArray;
 };
 
-factorial(21);
+const showTotalFactorial = factorial(5);
+console.log(showTotalFactorial);
 
 // receive a number, then break it down from 1 to that number. for ex, when you receive 5, then it will show 1, 2, 3, 4, 5 and then
 // multiply them all together.
