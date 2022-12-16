@@ -29,11 +29,11 @@ const factorial = function() {
 // then use reduce to sum up the numbers
 
 const add = function(...futureNumbers) { 
-	console.log(futureNumbers); // shows all your numbers
-  console.log(typeof futureNumbers); // thought this would show array, but shows as object
+	console.log(`function received: ${futureNumbers}`); // shows all your numbers
+  //console.log(typeof futureNumbers); // thought this would show array, but shows as object
   const toAdd = futureNumbers; // put the group of numbers into a const which is what you will use to refer to the array. otherwise 
   // you won't be able to use reduce
-  console.log(toAdd); // verifies that it is the same group of numbers from console line 32
+  console.log(`numbers to add: ${toAdd}`); // verifies that it is the same group of numbers from console line 32
   const total = toAdd.reduce((initialVal, nextVal) => { // reduce is adding up all the numbers in your array
     return initialVal + nextVal; // this return is only inside the arrow function so won't interfere with the return at line 44
   }, 0); // the 0 is your initial val for the accumulator. if you don't have this, then it will use index 0 as the initial val 
@@ -46,7 +46,7 @@ const add = function(...futureNumbers) {
 
 const enteredNumbers = function(...futureNumbers) { // ok to use ...futureNumbers here; the same as the above function bc the
   // parameter names are only good inside the function. 
-  console.log(futureNumbers); // shows all your numbers you entered
+  console.log(`Numbers entered: ${futureNumbers}`); // shows all your numbers you entered
   const toShow = futureNumbers; // put into a const so you can return the results of the function to the line that was calling it
   return toShow;
 };
@@ -55,7 +55,7 @@ const showEnteredNumbersAdd = enteredNumbers(2, -35, 5.1456, -896.147); // for n
 // for both functions. later when you build the ui, see if you can use a prompt or form.  also might need to cast as Number or
 // floating number to allow for many decimals? re-read the mdn docs for casting
 const showTotalAdd = add(2, -35, 5.1456, -896.147); 
-console.log(showTotalAdd);
+console.log({showTotalAdd});
 
 const numbers = document.createElement("p");  // creating your elements
 const total = document.createElement("p");
@@ -82,10 +82,10 @@ div.appendChild(total);
 // can have 0 as the val for the initial val
 
 const subtract = function(...futureNumbers) {
-  console.log(futureNumbers);
+  console.log(`function received: ${futureNumbers}`);
   const toSubtract = futureNumbers; // the list of numbers is in an array format but has no name yet. now give it a name so you 
   // can reference the array's name and use reduce or any other type of array method
-  console.log(toSubtract); // verifies the same list of numbers from line 85
+  console.log(`numbers to subtract: ${toSubtract}`); // verifies the same list of numbers from line 85
   const total = toSubtract.reduce((initialVal, nextVal) =>{
     return initialVal - nextVal;
   }); // unlike the addition, here we don't give a starting value for initialVal aka accumulator
@@ -94,7 +94,7 @@ const subtract = function(...futureNumbers) {
 
 const showEnteredNumbersSubtract = enteredNumbers(78, -190, 34.8876, -800.144);
 const showTotalSubtract = subtract(78, -190, 34.8876, -800.144);
-console.log(showTotalSubtract);
+console.log({showTotalSubtract});
 
 const numbersSubtract = document.createElement("p"); // create your elements
 const totalSubtract = document.createElement("p");
@@ -120,9 +120,9 @@ divSubtract.appendChild(totalSubtract);
 // the reduce method or other array methods.
 
 const sum = function(...futureNumbers) {  // use rest parameters bc you don't know how many numbers they want to add
-  console.log(futureNumbers); // show the numbers that the function received
+  console.log(`function received: ${futureNumbers}`); // show the numbers that the function received
   const toAdd = futureNumbers; // need to give the list of numbers a name so you can use array methods
-  console.log(toAdd); // verifies the same list is in the array that was received from the beginning of the function
+  console.log(`numbers to sum: ${toAdd}`); // verifies the same list is in the array that was received from the beginning of the function
   const totalAdd = toAdd.reduce((accumulator, nextVal) => {
     return accumulator + nextVal; // this return is only inside the arrow function. it won't interfere with the return at line 129
   });	
@@ -131,14 +131,14 @@ const sum = function(...futureNumbers) {  // use rest parameters bc you don't kn
 
 const showEnteredNumbersSum = enteredNumbers(-145, 76, 52.789, -1.41);
 const showTotalSum = sum(-145, 76, 52.789, -1.41);
-console.log(showTotalSum);
+console.log({showTotalSum});
 
 const numberSum = document.createElement("p"); // create the elements
 const totalSum = document.createElement("p");
 const divSum = document.createElement("div");
 const classDivSum = divSum.classList.add("sum");
 
-numberSum.textContent = `Numbers to add: ${showEnteredNumbersSum}`; // fill with content
+numberSum.textContent = `Numbers to sum: ${showEnteredNumbersSum}`; // fill with content
 totalSum.textContent = `Total: ${showTotalSum}`;
 
 document.body.appendChild(divSum); // show the content
@@ -151,10 +151,10 @@ divSum.appendChild(totalSum);
 // reduce.
 
 const multiply = function(...futureNumbers) {
-  console.log(futureNumbers); // to see what was received
+  console.log(`function received: ${futureNumbers}`); // to see what was received
   const toMultiply = futureNumbers; // need a name to refer to the array of numbers this function received so we can use the name
   // and then apply array methods
-  console.log({toMultiply}); // verify that this set of numbers is the same as what was received. {} will show the name of the 
+  console.log(`numbers to multiply: ${toMultiply}`); // verify that this set of numbers is the same as what was received. {} will show the name of the 
   // variable and the value. without {}, only shows the value
   const totalMultiply = toMultiply.reduce((accumulator, nextVal)=> { // since there is no starting value for the accumulator, 
     return accumulator * nextVal; // it will take index 0 as the first val. then accumulate index 1 to it. then this new val 
@@ -168,7 +168,7 @@ const multiply = function(...futureNumbers) {
 
 const showEnteredNumbersMultiply = enteredNumbers(50, -71, 5.1479, -123.41);
 const showTotalMultiply = multiply(50, -71, 5.1479, -123.41);
-console.log(showTotalMultiply);
+console.log({showTotalMultiply});
 
 const numberMultiply = document.createElement("p"); // create the elements
 const totalMultiply = document.createElement("p");
@@ -188,7 +188,7 @@ divMultiply.appendChild(totalMultiply);
 
 const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the power of 0 is 1. 2 to the power of any other number
   // is multiplying 2 over and over again
-  console.log(`${base},${exponent}`); // shows what was received
+  console.log(`function received: ${base},${exponent}`); // shows what was received
   const exponentZero = 1; // keep as 1 bc a number to the power of 0 is always 1. for now, test with positive exponents. later
   // will need to test with negative exponents
   // let newResult = 0; maybe don't need this for now
@@ -223,17 +223,16 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
 
 };
 
-const showEnteredNumberPower = enteredNumbers(8, 6); 
-const showTotalPower = power(8, 6);
-console.log(showEnteredNumberPower);
-console.log(showTotalPower);
+const showEnteredNumberPower = enteredNumbers(11, 5); 
+const showTotalPower = power(11, 5);
+console.log({showTotalPower});
 
 const numberPower = document.createElement("p"); // create the elements
 const totalPower = document.createElement("p");
 const divPower = document.createElement("div");
 const classDivPower = divPower.classList.add("power");
 
-numberPower.textContent = `Numbers to power: ${showEnteredNumberPower}`; // fill with content
+numberPower.textContent = `Numbers for the base and exponent: ${showEnteredNumberPower}`; // fill with content
 totalPower.textContent = `Total: ${showTotalPower}`;
 
 document.body.appendChild(divPower);  // show the content
@@ -242,32 +241,50 @@ divPower.appendChild(totalPower);
 
 
 // factorial ex for 5 would be 5 * 4 * 3 * 2 * 1 = 120. also factorial of 0 is 1. only do postive integers on this one.
+// receive a number, then break it down from 1 to that number. for ex, when you receive 5, then it will show 1, 2, 3, 4, 5 and then
+// multiply them all together.
 
-const factorial = function(number) { // it receives an integer
+const factorial = function(number) { // it receives an integer, but there is an exception when it receives 0
   // test for a positive integer. do this later. first break apart the integer
+  console.log(`function received: ${number}`);
+  const zeroFactorial = 1; 
+    if (number === 0) { // this is the exception for 0
+      return zeroFactorial;
+    };
+  // after the 0 part, the below is for any other integer
   const integerFillArray = [];  // an empty array which will be filled in by the loop
-  console.log(integerFillArray);
-  for(let i = 1; i <= number; i++) {  // the counter will go from 1 to n. where n is the actual number so it counts up by 1
-    console.log(`${i}`); // shows each integer count
-    integerFillArray.push(i);  // at each integer, it pushes that value into the array so for 5, it will push in 1, 2, 3, 4, 5
-  };
-  console.log(integerFillArray);  // shows the array with the integers. now that it is in an array, you can use reduce to 
-  // multiply them all together (see lin 153 for the previous multiply function). this may work for most cases, but you will 
-  // need a separate part of 0 bc 0 factorial is 1.
+  console.log(`starting array: ${integerFillArray}`);
+    for(let i = 1; i <= number; i++) {  // the counter will go from 1 to n. where n is the actual number so it counts up by 1
+      console.log(`iteration ${i}: adds ${i} to the array`); // shows each integer count
+      integerFillArray.push(i);  // at each integer, it pushes that value into the array so for 5, it will push in 1, 2, 3, 4, 5
+    };
+  console.log(`ending array: ${integerFillArray}`);  // shows the array with the integers. now that it is in an array, you can
+  // use reduce to multiply them all together (see line 153 for the previous multiply function). this may work for most cases, but
+  // you will need a separate part of 0 bc 0 factorial is 1.
 
   const totalMultiplyArray = integerFillArray.reduce((accumulator, nextVal) =>{
     return accumulator * nextVal;
   });
 
-  console.log(totalMultiplyArray);
+  // console.log({totalMultiplyArray});
   return totalMultiplyArray;
 };
 
-const showTotalFactorial = factorial(5);
-console.log(showTotalFactorial);
+const showEnteredNumberFactorial = enteredNumbers(8);
+const showTotalFactorial = factorial(8);
+console.log({showTotalFactorial});
 
-// receive a number, then break it down from 1 to that number. for ex, when you receive 5, then it will show 1, 2, 3, 4, 5 and then
-// multiply them all together.
+const numberFactorial = document.createElement("p");  // create the elements
+const totalFactorial = document.createElement("p");
+const divFactorial = document.createElement("div");
+const classDivFactorial = divFactorial.classList.add("factorial");
+
+numberFactorial.textContent = `Number for factorial: ${showEnteredNumberFactorial}`; // fill with content
+totalFactorial.textContent = `Total: ${showTotalFactorial}`;
+
+document.body.appendChild(divFactorial);  // show the content
+divFactorial.appendChild(numberFactorial);
+divFactorial.appendChild(totalFactorial);
 
 
 /* uncomment later when doing the tests
