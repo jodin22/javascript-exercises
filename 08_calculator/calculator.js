@@ -207,7 +207,9 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
       console.log(`Iteration ${i}: ${result}`); // this is helpful to see each iteration print to the console with the result
     };
     return result; // this is what is returned to whichever line called the function. this function has several returns, but 
-    // they don't interfere with each other because each return is inside of it's own area of { }
+    // they don't interfere with each other because each return is inside of it's own area of { }. and when a function gets to 
+    // a return, it exits the function immediately. some people use a test return to make sure a function doesn't create an 
+    // infinite loop
   } else if (exponent < 0) {
     // for the negative exponents, put the result in a var. then do 1/var to get the answer.
     let result = 1;
@@ -218,13 +220,15 @@ const power = function(base, exponent) {  // 2 to the power of 1 is 2. 2 to the 
     let oneDivByResult = 1/result;
     console.log(`1 divided by ${result}`);
     return oneDivByResult; // this is what is returned to whichever line called the function. this function has several returns, but 
-    // they don't interfere with each other because each return is inside of it's own area of { }
+    // they don't interfere with each other because each return is inside of it's own area of { } and when a function gets to 
+    // a return, it exits the function immediately. some people use a test return to make sure a function doesn't create an 
+    // infinite loop
   };
 
 };
 
-const showEnteredNumberPower = enteredNumbers(11, 5); 
-const showTotalPower = power(11, 5);
+const showEnteredNumberPower = enteredNumbers(8, 7); 
+const showTotalPower = power(8, 7);
 console.log({showTotalPower});
 
 const numberPower = document.createElement("p"); // create the elements
@@ -270,8 +274,8 @@ const factorial = function(number) { // it receives an integer, but there is an 
   return totalMultiplyArray;
 };
 
-const showEnteredNumberFactorial = enteredNumbers(8);
-const showTotalFactorial = factorial(8);
+const showEnteredNumberFactorial = enteredNumbers(6);
+const showTotalFactorial = factorial(6);
 console.log({showTotalFactorial});
 
 const numberFactorial = document.createElement("p");  // create the elements
