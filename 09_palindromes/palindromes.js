@@ -42,7 +42,8 @@ const palindromes = function(strings) {
     */
 
     const showIndex = makeArray.map((element, index) => {  // originally had makeArray.forEach((element, index) => {...} )
-      // but forEach returns undefined. console.log still works using forEach, but since it doesn't return anything like map does; 
+      // but forEach returns undefined. you will see undefined when you try to use what is returned with showIndex to the const 
+      // returnedFromPalindromes. console.log still works using forEach, but since it doesn't return anything like map does; 
       // that is why map is better in this situation
       // console.log(`index[${index}] is ${element}`);
       const theInfoToReturn = `index[${index}] is ${element}`;
@@ -50,6 +51,7 @@ const palindromes = function(strings) {
       return theInfoToReturn;  // this return is actually putting in the results of your arrow function to the const showIndex
     });
 
+    // uncomment return showIndex while testing the match(findAlphabet) bc the return line exits the function
     return showIndex; // this return is what is being sent to the line that called the palindromes(). will most likely be 
     // commented out when you get your function to work better
 
@@ -57,11 +59,24 @@ const palindromes = function(strings) {
     // only have letters remaining, then do comparison of 1st letter with last letter. if that is equal, then compare 2nd letter 
     // the 2nd to last letter. if that is equal, then keep going where you compare each end with the corresponding other end.
     // if they are all equal, then you know it is a palindrome. if not, then exit the function
-    
+ 
 };
 
 const returnedFromPalindromes = palindromes('A car, a man, a maraca.');
 console.log({returnedFromPalindromes});
+
+// below is testing a string and regex to find the matches of the alphabet
+const findAlphabet = /[a-z]/g; // without /g, only shows index 0. with /g shows all indexes?
+const testString = 'A car, a man, a maraca.';
+console.log(testString);
+const lowerCaseTestString = testString.toLowerCase();
+console.log(lowerCaseTestString);
+const testResult = lowerCaseTestString.match(findAlphabet);
+console.table(testResult); // need /g in the findAlphabet line or else it won't show all the indexes.
+console.log({testResult});
+
+// also need to know why this works on a string and if i can do this on an array going into each index and matching on each 
+// index's value
 
 
 
