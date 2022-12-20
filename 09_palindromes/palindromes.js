@@ -12,9 +12,11 @@ const palindromes = function () {
 
 */
 
-// take the string, then compress it so all spaces and punctuation are gone.
+// line 19 to 68 was the first attempt. Do not use. line 73 to 86 is the second attempt. This one is the preferred way. Finish the 
+// hw continuing with line 73 to 86. copy that part and start on a new line. Line 96 to 130, also don't use. This was an 
+// attempt to do the regex directly on the array.
 
-const palindromes = function(strings) {
+const oldPalindromes = function(strings) {
     console.log(`function received: ${strings}`);
     console.log(`string to break apart: ${strings}`);
     const stringArray = strings; // giving the string a name so you can refer to it when you want to do more 
@@ -46,7 +48,7 @@ const palindromes = function(strings) {
       // returnedFromPalindromes. console.log still works using forEach, but since it doesn't return anything like map does; 
       // that is why map is better in this situation
       // console.log(`index[${index}] is ${element}`);
-      const theInfoToReturn = `index[${index}] is ${element}`;
+      const theInfoToReturn = `index[${index}]: ${element}`;
       console.log(theInfoToReturn);
       return theInfoToReturn;  // this return is actually putting in the results of your arrow function to the const showIndex
     });
@@ -61,11 +63,13 @@ const palindromes = function(strings) {
  
 };
 
-const returnedFromPalindromes = palindromes('A car, a man, a maraca.');
+const returnedFromPalindromes = oldPalindromes('A car, a man, a maraca.');
 console.log({returnedFromPalindromes});
 console.table(returnedFromPalindromes);
 
-// below is testing a string and regex to find the matches of the alphabet. it becomes an array after the .match of the regex
+// below is testing a string and regex to find the matches of the alphabet. it starts as a string and after the .match of 
+// the regex, it gets put into an array where only the letters remain and the spaces and punctuation are removed.
+
 const findAlphabet = /[a-z]/g; // the g means to find all matches. without g, it will only find the first match. so for the 
 // ex below, a car, a man, a maraca. it will start at index 0 and see if it is an alphabet. since it is the letter a, then 
 // it stops. it won't go to the rest of the indexes. that is why you need to use g to check each index
@@ -85,7 +89,7 @@ console.log({testResult});
 // space, comma, periods etc. and all you have left are letters. this way is better than converting a string to an array and 
 // iterating through it to match and take out things.
 
-// before line 69, the regex didn't work bc it was directly on an array. regex is for strings, not arrays. but if you have an array 
+// before line 71, the regex didn't work bc it was directly on an array. regex is for strings, not arrays. but if you have an array 
 // and each item in your array is a string, then you can use the map method and pass each item to map and use the regex that way.
 // the below is taking a string, making it into an array so you can see each letter, space and punctuation has an index number
 
@@ -105,7 +109,7 @@ const newPalindrome = function(string) {
     const foundIt = element.match(findAlphabet); // map works bc it is passing each element to the regex. and bc each element
     // is a string, that is why the regex will work
     // console.log(`index ${index} is ${foundIt}`);
-    const foundItSentence = `index ${index} is ${foundIt}`;
+    const foundItSentence = `index [${index}]: ${foundIt}`;
     // console.table(foundIt);
     return foundItSentence; 
   });
@@ -124,6 +128,73 @@ const newPalindrome = function(string) {
 const newReturnedFromPalindrome = newPalindrome('A car, a man, a maraca.');
 console.log(newReturnedFromPalindrome);
 console.table(newReturnedFromPalindrome);
+
+// this part is copied from line 73 to 86. this part had the best results with the regex. now need to figure out how to compare
+// first and last letter and then the second to second-to-last letter and then the third and the third-to-last letter and so on
+// to see if it is a palindrome.
+
+// below is testing a string and regex to find the matches of the alphabet. it starts as a string and after the .match of 
+// the regex, it gets put into an array where only the letters remain and the spaces and punctuation are removed.
+
+const palindromes = function (someString) {
+  const findAlphabet = /[a-z]/g; // the g means to find all matches. without g, it will only find the first match. so for the 
+  // ex below, a car, a man, a maraca. it will start at index 0 and see if it is an alphabet. since it is the letter a, then 
+  // it stops. it won't go to the rest of the indexes. that is why you need to use g to check each index
+  const testString = someString;
+  console.log(`string received: ${testString}`);
+  const lowerCaseTestString = testString.toLowerCase();
+  console.log(`change to lower case: ${lowerCaseTestString}`);
+  const testStringCount = testString.length;
+  console.log(`count of the string: ${testStringCount}`); // shows 23 bc it includes spaces, commas, periods etc
+  const testResult = lowerCaseTestString.match(findAlphabet); // here is where the results of the .match are put into an array
+  // the .match for the regex will only match the alphabet. it returns a new array and this new array takes out all non alphabets.
+  console.table(testResult); // the new array has length 15. before it was 23 bc it included non-letters. now with only letters
+  // it reduced to 15.
+  console.log({testResult});
+
+  // now the testResult is an array of only the letters. the spaces and punctuation have been removed. try a loop where you 
+  // compare the letters from the front to the end to see if the forward and reverse are the same.
+
+  /*
+  console.log(`index 0: ${testResult[0]}`); // these lines are the ex you want the loop to do
+  console.log(`index 14: ${testResult[14]}`);
+  console.log(`index 1: ${testResult[1]}`);
+  console.log(`index 13: ${testResult[13]}`);
+  console.log(`index 2: ${testResult[2]}`);
+  console.log(`index 12: ${testResult[12]}`);
+  console.log(`index 3: ${testResult[3]}`);
+  console.log(`index 11: ${testResult[11]}`);
+  */
+
+  let answer = "";
+    for (let i = 1; i <= testResult.length; i++ ) {
+      if ((testResult[i-1]) === (testResult[testResult.length-i])) {
+        console.log(`round ${i}: ${testResult[i-1]} is same as index ${testResult.length}-${i}: ${testResult[testResult.length-i]}`);
+        console.log('continue');
+        answer = true;
+      } else {
+        console.log('not a palindrome');
+        return answer = false;
+      };
+    };
+
+  return answer;
+};
+
+const returnFromPalindromes = palindromes('Animal loots foliated detail of stool laminax.');
+console.log(returnFromPalindromes);
+
+/*
+- A car, a man, a maraca.
+  - Rats live on no evil star.
+  - Lid off a daffodil.
+  - Animal loots foliated detail of stool lamina.
+  - A nut for a jar of tuna.
+*/
+
+// what started as a string with a length of 23, after the regex, it becomes an array with length of 15 bc the regex took out the 
+// space, comma, periods etc. and all you have left are letters. this way is better than converting a string to an array and 
+// iterating through it to match and take out things.
 
 
 
