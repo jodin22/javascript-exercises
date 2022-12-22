@@ -194,7 +194,7 @@ const palindromes = function (someString) {
   return answer;
 };
 
-const returnFromPalindromes = palindromes('hello world, dlrow solleh!');
+const returnFromPalindromes = palindromes('ZZZZ car, a man, a maracaz.');
 console.log(returnFromPalindromes);
 
 /*
