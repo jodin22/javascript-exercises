@@ -33,32 +33,24 @@ and so on...
 // now add index 2 and index 3 to get index 4. it will look like this after the push [1, 1, 2, 3, 5]
 // keep going until you stop at a much later iteration, say 50?
 
-
-const fibonacci = function() {
-
-};
-
 const startFibArray = [1, 1];
 const growFibArray = []; // put the 1, 1, here. then the results of each addition will be pushed to here as well. so it will 
 // then become 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597 etc
+
+// i = 0. i is index 0. then add i + 1 to get index 0 + 1 which becomes index 1. so the end of round 1 you added index 0 + 
+// index 1 which is a new value and that will be put into index 2. and the i++ happens so the next round is 
+
+// i = 1. now i is index 1. then add i + 1 to get index 1 + 1 which becomes index 2. so the end of round 2 you added index 1 + 
+// index 2 which is a new value and that will be put into index 3. and the i++ happens so the next round is
+
+// i = 2. now i is index 2. then add i + 1 to get index 2 + 1 which become index 3. so the end of round 3 you added index 2 + 
+// index 3 which is a new value and that will be put into index 4. and the i++ happens so the next round is...
 
 let initialIndexValue = 1;
 let nextIndexValue = 1;
 let newIndexValue = 0; 
 const fillFibArray = [];
-/*  
-// after the 0 part, the below is for any other integer
-  const integerFillArray = [];  // an empty array which will be filled in by the loop
-  console.log(`starting array: ${integerFillArray}`);
-    for(let i = 1; i <= number; i++) {  // the counter will go from 1 to n. where n is the actual number so it counts up by 1
-      console.log(`iteration ${i}: adds ${i} to the array`); // shows each integer count
-      integerFillArray.push(i);  // at each integer, it pushes that value into the array so for 5, it will push in 1, 2, 3, 4, 5
-    };
-  console.log(`ending array: ${integerFillArray}`);  // shows the array with the integers. now that it is in an array, you can
-  // use reduce to multiply them all together (see line 153 for the previous multiply function). this may work for most cases, but
-  // you will need a separate part of 0 bc 0 factorial is 1.
 
-*/
 for (let i = 1; i <= 10; i++) { // keeps track of rounds. need some var declarations before the loop and inside the loop increase
     // each inital, next and new by i or in reference to the previous
    /* round 1
@@ -71,8 +63,8 @@ let newIndex = 2; // this becomes nextIndex for next round
 
     // right now this is adding the same 1 over and over. need to adjust it so it increases each time instead of a constant 1.
     // look at your palindromes loop for ex how each one increased by 1 and the other side decreased by 1. then it increased by 
-    // 2 and then decreased by 2. then increased by 3 and also decreased by 3 and so on. also look above at line 30. that seems
-    // like a good idea to use for pushing new values into the array
+    // 2 and then decreased by 2. then increased by 3 and also decreased by 3 and so on. also look above at line 30 to 47. 
+    // that seems like a good idea to use for pushing new values into the array
 };
 console.log({fillFibArray});
 /* round 2 
@@ -95,6 +87,23 @@ newIndex = 8; this becomes nextIndex for next round
 
 */
 
+/*  
+// after the 0 part, the below is for any other integer
+  const integerFillArray = [];  // an empty array which will be filled in by the loop
+  console.log(`starting array: ${integerFillArray}`);
+    for(let i = 1; i <= number; i++) {  // the counter will go from 1 to n. where n is the actual number so it counts up by 1
+      console.log(`iteration ${i}: adds ${i} to the array`); // shows each integer count
+      integerFillArray.push(i);  // at each integer, it pushes that value into the array so for 5, it will push in 1, 2, 3, 4, 5
+    };
+  console.log(`ending array: ${integerFillArray}`);  // shows the array with the integers. now that it is in an array, you can
+  // use reduce to multiply them all together (see line 153 for the previous multiply function). this may work for most cases, but
+  // you will need a separate part of 0 bc 0 factorial is 1.
+
+*/
+
+const fibonacci = function() {
+
+};
 
 // Do not edit below this line. uncomment the module line when you run the jest test
 // module.exports = fibonacci;
