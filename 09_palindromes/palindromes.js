@@ -167,21 +167,34 @@ const palindromes = function (someString) {
   */
 
   let answer = "";
+  let comparingToEnding = 0;
+  let comparingToBeginning = 0;
     for (let i = 1; i <= testResult.length; i++ ) {
       if ((testResult[i-1]) === (testResult[testResult.length-i])) {
-        console.log(`round ${i}: ${testResult[i-1]} is same as index ${testResult.length}-${i}: ${testResult[testResult.length-i]}`);
+        comparingToBeginning = i-1
+        comparingToEnding = testResult.length-i;
+        // console.log(comparingToEnding);
+        console.log(`round ${i}: index ${comparingToBeginning}: ${testResult[i-1]} is same as index ${comparingToEnding}: ${testResult[testResult.length-i]}`);
         console.log('continue');
         answer = true;
       } else {
+        comparingToBeginning = i-1
+        comparingToEnding = testResult.length-i;
+        // console.log(comparingToEnding);
         console.log('not a palindrome');
-        return answer = false;
+        console.log(`round ${i}: index ${comparingToBeginning}: ${testResult[i-1]} is not the same as index ${comparingToEnding}: ${testResult[testResult.length-i]}`);
+        return answer = false; // need the return here or else the loop will still go through all iterations filling answer with
+        // the values of true, then false, then true then false etc until the end of the array. when return answer = false is 
+        // written as answer = false, then only if the last iteration changes the answer to false will it return false. this will 
+        // still work and show false for non-palindromes but that isn't the behavior you want. you want it to exit the function 
+        // immediately if it is not a palindrome. that is what the return does at this part of the loop.
       };
     };
 
   return answer;
 };
 
-const returnFromPalindromes = palindromes('Animal loots foliated detail of stool laminax.');
+const returnFromPalindromes = palindromes('hello world, dlrow solleh!');
 console.log(returnFromPalindromes);
 
 /*
@@ -192,14 +205,8 @@ console.log(returnFromPalindromes);
   - A nut for a jar of tuna.
 */
 
-// what started as a string with a length of 23, after the regex, it becomes an array with length of 15 bc the regex took out the 
-// space, comma, periods etc. and all you have left are letters. this way is better than converting a string to an array and 
-// iterating through it to match and take out things.
-
-
-
-/* uncomment this when you do the jest part
+// uncomment this when you do the jest part
 // Do not edit below this line
-module.exports = palindromes;
+// module.exports = palindromes;
 
-*/
+
