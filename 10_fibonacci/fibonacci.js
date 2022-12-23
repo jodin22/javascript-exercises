@@ -64,6 +64,23 @@ for (let i = 0; i <= 20; i++) { // the i is not only the counter but also used t
   console.log({fillFibArray});
 };
 
+// startFibArray will hold the first two numbers. you can enter any numbers and it will calculate the rest of the fibonacci 
+// sequence and put it into fillFibArray. bc fillFibArray starts at index 0, you need to make sure the fibonacci(4) starts
+// looking at index 0 as 1 instead of 0.
+
+// ex 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657 
+// fibonacci(4) will find 3. and fibonacci(6) will find 8. so start index 0 as 1 and count up from there.
+
+// use at(index) instead of findIndex of indexOf bc at(index) only needs the index number. the other two need the element that will
+// then give you the index. we are asking for the index first, then return the element. also bc our index count starts at 0, be 
+// sure to decrease the count by 1 so it will start as 1, 2, 3, 4, 5 etc instead of 0, 1, 2, 3, 4, 5 etc
+
+let indexToFind = 11;
+let indexToFindMinus1 = indexToFind - 1;
+let itFound = "";
+itFound = fillFibArray.at(indexToFindMinus1);
+console.log(`${indexToFind} decreases by 1 to find ${indexToFindMinus1}. it found: ${itFound}`);
+
 const fibonacci = function() {
 
 };
