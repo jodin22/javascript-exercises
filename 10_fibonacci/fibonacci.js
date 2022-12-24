@@ -76,6 +76,10 @@ const fibonacci = function(whichMember) {
 // then give you the index. we are asking for the index first, then return the element. also bc our index count starts at 0, be 
 // sure to decrease the count by 1 so it will start as 1, 2, 3, 4, 5 etc instead of 0, 1, 2, 3, 4, 5 etc
 
+// if whichMember receives a negative number, it still finds the member in the fibonacci series, but it counts from the end 
+// of the array length. ex is -25 will be length-25. then bc of the -1 in indexToFindMinus1, it becomes length-26. the 
+// jest test wants any negatives to return "OOPS". need to change some of the steps at line 83 and below
+
   let indexToFind = whichMember;
   let indexToFindMinus1 = indexToFind - 1;
   let itFound = "";
@@ -86,8 +90,8 @@ const fibonacci = function(whichMember) {
 
 };
 
-const receivedFromFibonacci = fibonacci(26);
+const receivedFromFibonacci = fibonacci(-5);
 console.log(receivedFromFibonacci);
 
 // Do not edit below this line. uncomment the module line when you run the jest test
-// module.exports = fibonacci;
+module.exports = fibonacci;
