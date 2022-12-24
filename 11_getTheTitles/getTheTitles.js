@@ -4,6 +4,8 @@ const getTheTitles = function() {
 
 // look at ~/repos/JavaScript30/'04 - Array cardio day 1 and '07 - Array cardio day 2.
 // these 2 hw's have ex's of an array where each element is an object.
+// also look at ~/repos/javascript-exercises/09-palindromes at lines 46 and 108. these sections have good ex's of map where
+// you pass both element and index. most of the ex's that they show in the reading and hw usually only pass the element.
 
 /* 
 const inventors = [
