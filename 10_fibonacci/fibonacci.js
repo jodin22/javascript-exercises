@@ -80,8 +80,11 @@ const fibonacci = function(whichMember) {
 // of the array length. ex is -25 will be length-25. then bc of the -1 in indexToFindMinus1, it becomes length-26. the 
 // jest test wants any negatives to return "OOPS". need to change some of the steps at line 83 and below
 
-  let indexToFind = whichMember;
-  let indexToFindMinus1 = indexToFind - 1;
+  let indexToFind = whichMember; // receives a number to find the member in the fibonacci sequence
+    if (indexToFind <= 0) { // if received 0 or negative, then immediately exit the function and show OOPS
+      return "OOPS";
+    }; 
+  let indexToFindMinus1 = indexToFind - 1; // if it is a positive number then return the member
   let itFound = "";
   itFound = fillFibArray.at(indexToFindMinus1);
   console.log(`${indexToFind} decreases by 1 to find ${indexToFindMinus1}. it found: ${itFound}`);
@@ -90,8 +93,8 @@ const fibonacci = function(whichMember) {
 
 };
 
-const receivedFromFibonacci = fibonacci(-5);
+const receivedFromFibonacci = fibonacci(28);
 console.log(receivedFromFibonacci);
 
 // Do not edit below this line. uncomment the module line when you run the jest test
-module.exports = fibonacci;
+// module.exports = fibonacci;
