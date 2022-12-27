@@ -30,7 +30,7 @@ const books = [
 
 */
 
-const getTheTitles = function() {
+const getTheTitles = function() { // line 80's block has the main concept for the solution
 
 };
 
@@ -116,6 +116,15 @@ console.log(`using .at(indexNum) ${getTheBookTitle9} is written by ${getTheBookT
 // the above block could be used with a loop but it is better to use map and pass element, index AND array. see line 80's block
 // for a better way to do this so you can always find any element and even use index to find the first, second, third etc element
 // just as you do for non-object arrays.
+
+// the above lines show in the console for element as [object Object]. to show what the contents of this object is, you can use
+// stringify. Use console.log(JSON.stringify(result)) to get the JSON in a string format.
+
+const getTheBookTitleExperiment2 = books.map((element, index, array) => {
+  console.log(`no stringify: ${element} shows ${array[index]["title"]} is written by ${array[index].author}`); // shows [object Object]
+  console.log(`${JSON.stringify (element)} is the [object Object]`); // shows the contents of [object Object]
+});
+
 
 
 // Do not edit below this line
