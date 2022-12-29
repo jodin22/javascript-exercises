@@ -30,7 +30,9 @@ const books = [
 
 */
 
-// const getTheTitles = function() { // line 80's block has the main concept for the solution
+// const getTheTitles = function() { // line 80's block has the main concept for the solution. also lines 72 to 79 comments are 
+// important. also see line 178 to 193 for a summary of element, index and array parameters while using map for arrays with items
+// that are objects instead of a single string or number.
 
 //};
 
@@ -152,9 +154,10 @@ const getTheTitles = function(books) { // line 80's block has the main concept f
 };
 
 const returnFromGetTheTitles = getTheTitles(books); // calls the function and passes books. books is the variable but it is a 
-// constant that holds an array of objects. the const will receive the function's results which will be the list of titles
-console.log(books);
-console.log(returnFromGetTheTitles);
+// constant that holds an array of objects. the const returnFromGetTheTitles will receive the function's results which will be 
+// the list of titles
+console.log(books); // show the array books that is being sent to the function
+console.log(returnFromGetTheTitles); // show the results of the function 
 
 // the below is almost identical to the above block. it is working on the list of authors instead of titles
 const getTheAuthors = function(books) { // line 80's block has the main concept for the solution
