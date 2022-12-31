@@ -4,7 +4,7 @@ const findTheOldest = function() {
 };
 */
 
-const peopleTest3 = [
+const peopleTest4 = [
     {
         name: "Carly",
         yearOfBirth: 1066,
@@ -197,7 +197,7 @@ const peopleTest2Sort = [ // commment and uncomment different yearOfDeath's to s
     {
         name: "Ray",
         yearOfBirth: 1962,
-        //yearOfDeath: 2011,
+        yearOfDeath: 2011,
     },
     {
         name: "Jane",
@@ -207,12 +207,12 @@ const peopleTest2Sort = [ // commment and uncomment different yearOfDeath's to s
     {
         name: "Sam",
         yearOfBirth: 1932,
-        yearOfDeath: 1981,
+        //yearOfDeath: 1981,
     },
     {
         name: "Beth",
         yearOfBirth: 1991,
-        //yearOfDeath: 2020,
+        yearOfDeath: 2020,
     },
 ];
 
@@ -251,7 +251,39 @@ console.log(`after the sort: ${JSON.stringify(comparePersonAgeTestAlive)}`);
 // yearOfDeath is undefined. see if you can take the date part and combine it with the map to get everybody's age regardless of
 // yearOfDeath is defined or undefined. then see if you can sort on those results using the sort block starting at line 191 to 248.
 
+const peopleTest3 = [ // 'finds the oldest person if someone is still living' 
+// expect(findTheOldest(people).name).toBe('Ray'); in the jest test, i think this is incorrect bc as of today, Ray has passed. 
+// maybe the jest test was written in 2011? and then ray wold be the one in .toBe? or was it written in 2021 and the 2011 is 
+// supposed to be 2021?
+    {
+      name: "Carly",
+      yearOfBirth: 2018, // with no yearOfDeath, that part is undefined
+    },
+    {
+      name: "Ray",
+      yearOfBirth: 1962,
+      yearOfDeath: 2011,
+    },
+    {
+      name: "Jane",
+      yearOfBirth: 1912,
+      yearOfDeath: 1941,
+    },
+  ];
 
+  console.log(peopleTest3);
+
+  const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
+    // if there is an undefined for yearOfDeath, then use the date() and get the the current year. then do math of current year 
+    // minus birth. this will give each person's age regardless of alive or dead.
+    // then sort for the oldest but only on those who are alive
+    if (element.yearOfDeath === undefined) {
+        const personAliveYear = (new Date()).getFullYear();
+        console.log(`index[${[index]}]: ${element.name} is alive and year is ${personAliveYear}`);
+    } else {
+        console.log(`index[${index}]: ${element.name} has passed and year is ${element.yearOfDeath}`);
+    };
+  });
 
 
 // Do not edit below this line
