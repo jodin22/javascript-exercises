@@ -76,7 +76,7 @@ const findEachPersonAgeTest1 = peopleTest1.map((element, index, array) => {
 console.log(findEachPersonAgeTest1);
 
 
-console.log(`the original order: ${JSON.stringify(peopleTest1)}`); // shows the original order of the objects
+console.log(`the original order: ${JSON.stringify(findEachPersonAgeTest1)}`); // shows the original order of the objects
 
 const comparePersonAgeTest1 = peopleTest1.sort((initialPerson, nextPerson) => { // each param is the individual object in the array.
     // it needs to be listed twice when you want to do a sort bc it has to compare two things
@@ -124,12 +124,12 @@ const peopleTest2 = [ // commment and uncomment different yearOfDeath's to see h
     {
         name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
         yearOfBirth: 2018,
-        //yearOfDeath: 2022,
+        yearOfDeath: 2022,
     },
     {
         name: "Ray",
         yearOfBirth: 1962,
-        yearOfDeath: 2011,
+        //yearOfDeath: 2011,
     },
     {
         name: "Jane",
@@ -139,12 +139,12 @@ const peopleTest2 = [ // commment and uncomment different yearOfDeath's to see h
     {
         name: "Sam",
         yearOfBirth: 1932,
-        yearOfDeath: 1981,
+        //yearOfDeath: 1981,
     },
     {
         name: "Beth",
-        yearOfBirth: 2001,
-        //yearOfDeath: 1991,
+        yearOfBirth: 1991,
+        yearOfDeath: 2020,
     },
 ];
 
@@ -165,7 +165,9 @@ console.log(yearTest); // shows the year
 console.log(peopleTest2); // shows the original array
 
 if (peopleTest2[0].yearOfDeath === undefined) { // see if it shows carly correctly
-    console.log('she is still alive');
+    console.log('carly is still alive');
+} else {
+    console.log('carly has passed')
 };
 
 // map will check if yearOfDeath exists for each person
@@ -175,36 +177,32 @@ const findEachPersonDeath = peopleTest2.map((element, index, array) => {
     if (element.yearOfDeath === undefined) { // for those who don't have a yearOfDeath, it will print still alive
         console.log(`${element.name} is still alive`);
         const results = `${element.name} is alive`; 
-        return results; // put their name in a string and return to the array findEachPersonDeath
+        return results; // put their name in a string and return the string to the array findEachPersonDeath
     } else {
         console.log(`${element.name} has passed`); // for those that do have a yearOfDeath, it will print has passed
         const results = `${element.name} has passed`; 
-        return results; // put their name in a string and return to the array findEachPersonDeath
+        return results; // put their name in a string and return the string to the array findEachPersonDeath
     };
 }); // the array findEachPersonDeath will be filled up with each iteration of the map to show a result of each person and their
 // status
 
-console.log(findEachPersonDeath); // this is peopleTest2 array. below this is the same array but with some lines of yearOfDeath 
-// uncommented. the peopleTest2 has some lines commented out bc you wanted to see some results showing has passed. 
+console.log(findEachPersonDeath); // show the results of map
 
-// be sure to console log peopleTest2BeforeSort before the results of the sort comparePersonAgeTestAlive bc after the sort,
-// the original array is sorted in place so you won't be able to tell what got moved around from the original position.
-
-const peopleTest2BeforeSort = [ // commment and uncomment different yearOfDeath's to see how the results differ
+const peopleTest2Sort = [ // commment and uncomment different yearOfDeath's to see how the results differ
     {
         name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
         yearOfBirth: 2018,
-        yearOfDeath: 2022,
+        //yearOfDeath: 2022,
     },
     {
         name: "Ray",
         yearOfBirth: 1962,
-        yearOfDeath: 2011,
+        //yearOfDeath: 2011,
     },
     {
         name: "Jane",
         yearOfBirth: 1912,
-        yearOfDeath: 1941,
+        //yearOfDeath: 1941,
     },
     {
         name: "Sam",
@@ -213,14 +211,19 @@ const peopleTest2BeforeSort = [ // commment and uncomment different yearOfDeath'
     },
     {
         name: "Beth",
-        yearOfBirth: 2001,
-        yearOfDeath: 1991,
+        yearOfBirth: 1991,
+        //yearOfDeath: 2020,
     },
 ];
 
 
-// using part of the map above, do a sort on those that are still alive
-const comparePersonAgeTestAlive = peopleTest2BeforeSort.sort((initialPerson, nextPerson) =>{
+// the array in the sort is shown as [...peopleTest2Sort].sort((initialPerson, nextPerson) => {...}. this is done bc after
+// a sort is finished, it does it on the array instead of creating a shallow copy the way map does. by using [...spread syntax]
+// you can still compare the before and after the sort to see how the results compare to the original
+
+//[...peopleTest2Sort] - this takes the peopleTest2Sort values and with the spread syntax, it puts those values into an array. this
+// way you don't mutate the original peopleTest2Sort
+const comparePersonAgeTestAlive = [...peopleTest2Sort].sort((initialPerson, nextPerson) =>{
     // let ageOfInitialPerson = 0;
     // let ageOfNextPerson = 0;
     // ageOfInitialPerson = initialPerson.yearOfDeath - initialPerson.yearOfBirth;
@@ -233,12 +236,20 @@ const comparePersonAgeTestAlive = peopleTest2BeforeSort.sort((initialPerson, nex
     }
 
 });
-// unsure if this will sort correctly when you have consecutive undefined's bc this is only half of it. after the undefined's 
-// are bubbled up to the top, then you have to check who the oldest is of those undefined's.
+// unsure if this will sort correctly when you have consecutive undefined's. after the undefined's are bubbled up to the top, 
+//then you have to check who the oldest is of those undefined's. 
 
-console.log(`before the sort: ${JSON.stringify(peopleTest2BeforeSort)}`);
+// seems when you have consecutive undefined, it still works. i thought with the && logic that if it is consecutive undefined, 
+// then it failed the if test and it would go to the else and it wouldn't sort properly, but it seems to work. seems the main
+// idea is always make sure to clearly show how the initial vs the next is compared. then always have a 1 or -1 bc if you don't
+// have 1 or -1, then it will violate the anti-symmetry
+
+console.log(`before the sort: ${JSON.stringify(peopleTest2Sort)}`);
 console.log(`after the sort: ${JSON.stringify(comparePersonAgeTestAlive)}`);
 
+// review lines 120 to 189. this block uses the date object and map to find each person that hasn't died. meaning the 
+// yearOfDeath is undefined. see if you can take the date part and combine it with the map to get everybody's age regardless of
+// yearOfDeath is defined or undefined. then see if you can sort on those results using the sort block starting at line 191 to 248.
 
 
 
