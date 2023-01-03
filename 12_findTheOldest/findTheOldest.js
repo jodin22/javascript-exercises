@@ -4,24 +4,6 @@ const findTheOldest = function() {
 };
 */
 
-const peopleTest4 = [
-    {
-        name: "Carly",
-        yearOfBirth: 1066,
-    },
-    {
-        name: "Ray",
-        yearOfBirth: 1962,
-        yearOfDeath: 2011,
-    },
-    {
-        name: "Jane",
-        yearOfBirth: 1912,
-        yearOfDeath: 1941,
-    },
-
-];
-
 // refer to /home/jodin22sams/repos/JavaScript30/04 - Array Cardio Day 1/index-START.html and 07 - Array Cardio Day 2.
 // these have similar ex's of using the date function and reduce
 
@@ -124,7 +106,7 @@ const peopleTest2 = [ // commment and uncomment different yearOfDeath's to see h
     {
         name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
         yearOfBirth: 2018,
-        yearOfDeath: 2022,
+        //yearOfDeath: 2023,
     },
     {
         name: "Ray",
@@ -144,7 +126,7 @@ const peopleTest2 = [ // commment and uncomment different yearOfDeath's to see h
     {
         name: "Beth",
         yearOfBirth: 1991,
-        yearOfDeath: 2020,
+        yearOfDeath: 2023,
     },
 ];
 
@@ -165,9 +147,9 @@ console.log(yearTest); // shows the year
 console.log(peopleTest2); // shows the original array
 
 if (peopleTest2[0].yearOfDeath === undefined) { // see if it shows carly correctly
-    console.log('carly is still alive');
+    console.log('test: carly is still alive');
 } else {
-    console.log('carly has passed')
+    console.log('test: carly has passed')
 };
 
 // map will check if yearOfDeath exists for each person
@@ -192,7 +174,7 @@ const peopleTest2Sort = [ // commment and uncomment different yearOfDeath's to s
     {
         name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
         yearOfBirth: 2018,
-        //yearOfDeath: 2022,
+        //yearOfDeath: 2023,
     },
     {
         name: "Ray",
@@ -212,7 +194,7 @@ const peopleTest2Sort = [ // commment and uncomment different yearOfDeath's to s
     {
         name: "Beth",
         yearOfBirth: 1991,
-        yearOfDeath: 2020,
+        yearOfDeath: 2023,
     },
 ];
 
@@ -252,39 +234,120 @@ console.log(`after the sort: ${JSON.stringify(comparePersonAgeTestAlive)}`);
 // yearOfDeath is defined or undefined. then see if you can sort on those results using the sort block starting at line 191 to 248.
 
 const peopleTest3 = [ // 'finds the oldest person if someone is still living' 
-// expect(findTheOldest(people).name).toBe('Ray'); in the jest test, i think this is incorrect bc as of today, Ray has passed. 
-// maybe the jest test was written in 2011? and then ray wold be the one in .toBe? or was it written in 2021 and the 2011 is 
-// supposed to be 2021?
+// expect(findTheOldest(people).name).toBe('Ray'); the jest tests are using the same array named people but each test has different
+// values. the 2nd and 3rd jest test are phrased in a confusing way but what it really means is to find the oldest.
+// in the 2nd test, carly is born in 2018 and no year of death so she is only 5 years old whereas all the dead people are much 
+// older than 5 so carly would not be the oldest. in the 3rd test, carly is born in 1066 and no date of death so she will always
+// be older than the others.
     {
-      name: "Carly",
-      yearOfBirth: 2018, // with no yearOfDeath, that part is undefined
+        name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
+        yearOfBirth: 2018,
+        yearOfDeath: 2023,
     },
     {
-      name: "Ray",
-      yearOfBirth: 1962,
-      yearOfDeath: 2011,
+        name: "Ray",
+        yearOfBirth: 1962,
+        //yearOfDeath: 2011,
     },
     {
-      name: "Jane",
-      yearOfBirth: 1912,
-      yearOfDeath: 1941,
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+    },
+    {
+        name: "Sam",
+        yearOfBirth: 1932,
+        //yearOfDeath: 1981,
+    },
+    {
+        name: "Beth",
+        yearOfBirth: 1991,
+        //yearOfDeath: 2023,
     },
   ];
 
   console.log(peopleTest3);
 
-  const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
+// (DON'T DO: refer to 07 - Array Cardio Day 2/index-START.html bc it has ex's of the .some method. first step is to use .some 
+// and see if any of these have undefined for yearOfDeath. this will show true if anybody is alive. then do the math on 
+// each person to get their age regardless of living or dead.)
+
+// the below block is using map and if test for undefined on yearOfDeath. (DON'T DO: instead use .some to see if any undefined 
+// exist and then do the math on the age.) Continue using map below to get the oldest no matter who is alive or dead.
+const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
     // if there is an undefined for yearOfDeath, then use the date() and get the the current year. then do math of current year 
     // minus birth. this will give each person's age regardless of alive or dead.
-    // then sort for the oldest but only on those who are alive
+    // then sort for the oldest
     if (element.yearOfDeath === undefined) {
         const personAliveYear = (new Date()).getFullYear();
+        console.log(`alive in ${personAliveYear}`);
         console.log(`index[${[index]}]: ${element.name} is alive and year is ${personAliveYear}`);
+        const personAliveAge = personAliveYear - element.yearOfBirth;
+        const results = `${array[index].name} is alive and is ${personAliveAge}`;
+        console.log(results);
+        return results;
     } else {
-        console.log(`index[${index}]: ${element.name} has passed and year is ${element.yearOfDeath}`);
+        console.log(`died in ${element.yearOfDeath}`);
+        console.log(`index[${index}]: ${element.name} passed away in ${element.yearOfDeath}`);
+        const personDeathAge = element.yearOfDeath - element.yearOfBirth;
+        const results = `${array[index].name} has passed and was ${personDeathAge}`;
+        console.log(results);
+        return results;
     };
-  });
+});
 
+console.log(findOldestIfStillLiving); // this array is showing each person in a sentence. it shows their alive/death status and
+// age.
+
+// use the 277 block above and put it in a sort. keep in mind that you need to declare some var's to hold the current year and 
+// the personAliveAge like you did for the map block. then when you get the right ending years for everybody, then do the 
+// math on everybody and that will give you their ages and then you can do the sort.
+
+const peopleTest4 = [
+    {
+        name: "Carly",
+        yearOfBirth: 1066,
+    },
+    {
+        name: "Ray",
+        yearOfBirth: 1962,
+        yearOfDeath: 2011,
+    },
+    {
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+    },
+    {
+        name: "Sam",
+        yearOfBirth: 1932,
+        //yearOfDeath: 1981,
+    },
+    {
+        name: "Beth",
+        yearOfBirth: 1991,
+        //yearOfDeath: 2023,
+    },
+];
+
+// before the sort, edit the 277 block so you get the results of the map with person's name and age. then use sort on the 
+// results. ex would be if the results is named findOldestIfStillLiving, then to preserve the original order, use spread 
+// syntax on the sort method. then you can use initialPerson and nextPerson. right now, the below block at 338 has errors 
+// bc it hasn't used any initial or next. it is just trying to do the if test without receiving the initial and next.
+
+
+/* const findOldestRegardless = [...peopleTest4].sort((initialPerson, nextPerson) => {
+    // declare some consts to hold the year for those who are still living aka yearOfDeath is undefined. also need some 
+    // consts on the math part for ages of those with yearOfDeath undefined. also need const for the math of yearOfDeath 
+    // minus yearOfBirth. once you have all the ages regardless of alive/dead, then do the sort.
+    if (element.yearOfDeath === undefined) {
+        const stillAlive = (new Date()).getFullYear();
+        console.log(stillAlive);
+    } else {
+        const hasDied = element.yearOfDeath;
+        console.log(hasDied);
+    };
+}); */
 
 // Do not edit below this line
 // module.exports = findTheOldest; // uncomment this line when you run the jest test
