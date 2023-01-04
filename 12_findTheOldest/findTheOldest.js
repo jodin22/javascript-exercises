@@ -242,12 +242,12 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
         yearOfBirth: 2018,
-        yearOfDeath: 2023,
+        // yearOfDeath: 2023,
     },
     {
         name: "Ray",
         yearOfBirth: 1962,
-        //yearOfDeath: 2011,
+        // yearOfDeath: 2011,
     },
     {
         name: "Jane",
@@ -257,7 +257,7 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Sam",
         yearOfBirth: 1932,
-        //yearOfDeath: 1981,
+        yearOfDeath: 1981,
     },
     {
         name: "Beth",
@@ -299,9 +299,65 @@ const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
 console.log(findOldestIfStillLiving); // this array is showing each person in a sentence. it shows their alive/death status and
 // age.
 
-// use the 277 block above and put it in a sort. keep in mind that you need to declare some var's to hold the current year and 
-// the personAliveAge like you did for the map block. then when you get the right ending years for everybody, then do the 
-// math on everybody and that will give you their ages and then you can do the sort.
+
+// the block below is using peopleTest3 as the original array. then the map creates new objects in a new array that uses all 
+// the same info from the original array but adds an age member/value.  so the finished map will have {name, yearOfBirth,
+// yearOfDeath, age}. some of the elements will not have yearOfDeath since some of them are still alive.
+
+console.log(`the original array: ${JSON.stringify(peopleTest3)}`); // shows the array before the map
+
+// the map will put the results into an array called findOldestRegardless. this new array will hold objects that are the same 
+// as the original array but will have a new member called age. so each object will look something like this:
+// {name, yearOfBirth, yearOfDeath, age}. some objects will not have yearOfDeath since that is undefined for those still living.
+
+// the last step is to sort the findOldestRegardless array.
+
+const findOldestRegardless = peopleTest3.map((element, index, array) => { 
+    if (element.yearOfDeath === undefined) { // if there is no year of death which means they are still alive
+        const personAliveYear = (new Date()).getFullYear(); // create a var that will hold the current year
+        console.log(personAliveYear);  // show the current year
+        const personAliveAge = personAliveYear - element.yearOfBirth;  // the current year minus year of birth
+        console.log(`${element.name} is ${personAliveAge}`); // show that person and their age as of current year
+        const personAlive = { // each element that has yearOfDeath undefined in the original array, map will create a new
+            // object with the below member and values
+            name: element.name,  // the same member name and get the values from the original array using element.whatever
+            yearOfBirth: element.yearOfBirth, // the same member name and get the values from the original array using element.whatever
+            //yearOfDeath: element.yearOfDeath, LEAVE OUT BC THERE ARE NO DEATHS FOR SOME PEOPLE
+            age: personAliveAge, // originally, i had age: element[personAliveAge]. thinking that personAliveAge is in a 
+            // const or var, then to reference it, i needed brackets. but removing element and brackets, it works? 
+
+            // i think it is bc map is referencing each element in the original array. there is no age in the original array
+            // so when you had element[personAliveAge] it showed undefined.
+
+            // also, name and yearOfBirth are keeping the same member names and values from the original array. age is a new
+            // member and the new values for age are taken from the personAliveAge calculation. 
+        };
+        return personAlive;
+    } else { // for those that have a year of death which means they are no longer alive
+        const personDeadAge = element.yearOfDeath - element.yearOfBirth; // the age of that person
+        console.log(`${element.name} was ${personDeadAge}`); // person's name and age
+        const personDead = { // each element that does have yearOfDeath defined in the original array, map will create a 
+            // new object with the below members and values
+            name: element.name, // the same member name and get the values from the original array using element.whatever
+            yearOfBirth: element.yearOfBirth, // the same member name and get the values from the original array using element.whatever
+            yearOfDeath: element.yearOfDeath, // the same member name and get the values from the original array using element.whatever
+            age: personDeadAge,  // new member and value. see lines 326 to 333 for the explanation on the new member/value.
+        };
+        return personDead;
+    };
+});
+
+console.log(`after the map: ${JSON.stringify(findOldestRegardless)}`); // shows the array with each object now having an age in 
+// addition to the previous member/values.
+console.log(findOldestRegardless); // shows the array again.
+
+// the peopleTest3 has name, yearOfBirth, yearOfDeath. findOldestRegardless has name, yearOfBirth, yearOfDeath and age. 
+// the map took each of the objects in the original array and created new objects that included the same members and values 
+// as before, but now added an age.
+
+// now that you have an age on everybody regardless of yearOfDeath being undefined or not, you can sort on the new array, 
+// findOldestRegardless and find the oldest person that way.
+
 
 const peopleTest4 = [
     {
@@ -330,9 +386,7 @@ const peopleTest4 = [
     },
 ];
 
-// before the sort, edit the 277 block so you get the results of the map with person's name and age. then use sort on the 
-// results. ex would be if the results is named findOldestIfStillLiving, then to preserve the original order, use spread 
-// syntax on the sort method. then you can use initialPerson and nextPerson. right now, the below block at 338 has errors 
+//  right now, the below block at 393 has errors 
 // bc it hasn't used any initial or next. it is just trying to do the if test without receiving the initial and next.
 
 
