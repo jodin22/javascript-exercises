@@ -8,11 +8,9 @@ const findTheOldest = function() {
 // these have similar ex's of using the date function and reduce
 
 // SEE BELOW AT THE BLOCK STARTING AT LINE 305. THIS IS WHERE THE HW STARTS TO COME TOGETHER. BEFORE 305, HW WAS WORKING ON ONE
-// PIECE AT A TIME.
+// PIECE AT A TIME. LINE 387 TO 469 IS THE HW ANSWER WHICH PUTS IT ALL IN A FUNCTION.
 
-const findTheOldestTest = function() {  
 
-};
 
 // before putting your work in a function, do these steps. when it all works, then put it in the function.
 // peopleTest1 array, trying to do the math on one person using yearOfDeath - yearOfBirth. after that works, use map to do it 
@@ -250,7 +248,7 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Ray",
         yearOfBirth: 1962,
-        yearOfDeath: 2011,
+        yearOfDeath: 1991,
     },
     {
         name: "Jane",
@@ -265,7 +263,7 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Beth",
         yearOfBirth: 1991,
-        //yearOfDeath: 2023,
+        yearOfDeath: 2020,
     },
   ];
 
@@ -369,23 +367,107 @@ console.log(findOldestRegardless); // shows the array again.
 
 // START THE SORT METHOD BELOW.
 
+// line 305 to 356 is using the original array of peopleTest3. the new array that shows everybody's ages is now held in 
+// findOldestRegardless. i want to keep the order of that array the same so i will sort using spread sytnax. 
+// otherwise, the sort mutates the findOldestRegardless array.
 
-//  right now, the below block at 393 has errors 
-// bc it hasn't used any initial or next. it is just trying to do the if test without receiving the initial and next.
-
-
-/* const findOldestRegardless = [...peopleTest4].sort((initialPerson, nextPerson) => {
-    // declare some consts to hold the year for those who are still living aka yearOfDeath is undefined. also need some 
-    // consts on the math part for ages of those with yearOfDeath undefined. also need const for the math of yearOfDeath 
-    // minus yearOfBirth. once you have all the ages regardless of alive/dead, then do the sort.
-    if (element.yearOfDeath === undefined) {
-        const stillAlive = (new Date()).getFullYear();
-        console.log(stillAlive);
+const sortByOldest = [...findOldestRegardless].sort((initialPerson, nextPerson) => { // ...spread syntax allows me to 
+    // keep the original array in the original order. that way i can compare the before and after.
+    if (initialPerson.age > nextPerson.age) {
+        return -1; // bubbles up the rank
     } else {
-        const hasDied = element.yearOfDeath;
-        console.log(hasDied);
+        return 1; // bubbles down the rank
     };
-}); */
+});
+
+console.log(`original order: ${JSON.stringify(findOldestRegardless)}`); // original array order
+console.log(`sorted by age: ${JSON.stringify(sortByOldest)}`); // sorted by oldest person regardless of alive or dead
+
+
+// the below block is putting it altogether in a function. re-using lines 303 to 384 with some editing so it doesn't look
+// as messy.
+
+const peopleTest4 = [
+    {
+        name: "Carly",  // notice carly doesn't have a yearOfDeath property/value
+        yearOfBirth: 2018,
+        // yearOfDeath: 2023,  // when there is no yearOfDeath, it shows as undefined
+    },
+    {
+        name: "Ray",
+        yearOfBirth: 1962,
+        yearOfDeath: 1991,
+    },
+    {
+        name: "Jane",
+        yearOfBirth: 1912,
+        yearOfDeath: 1941,
+    },
+    {
+        name: "Sam",
+        yearOfBirth: 1932,
+        //yearOfDeath: 1981,
+    },
+    {
+        name: "Beth",
+        yearOfBirth: 1991,
+        //yearOfDeath: 2020,
+    },
+
+];
+
+console.log(`original array: ${JSON.stringify(peopleTest4)}`); // need stringify or else everything appears as [object Object]
+
+const findTheOldestTest = function(listOfPeople) {
+
+    const newObjectWithAge = listOfPeople.map((element, index, array) => {
+        if (element.yearOfDeath === undefined) { // those still alive have no year of death in the object
+            const personAliveYear = (new Date()).getFullYear(); // the current year
+            const personAliveAge = personAliveYear - element.yearOfBirth; // current year minus birth year
+            const objectForPersonAlive = { // create an object for each person that is alive
+                name: element.name, // use the same property and value from the array that was sent to the map function
+                yearOfBirth: element.yearOfBirth,//use the same property and value from the array that was sent to the map function
+                // no yearOfDeath since alive
+                age: personAliveAge, // this is a new property that was not in the array from the map function. the value is from
+                // the const holding the age
+            };
+            return objectForPersonAlive; // new object sent to newObjectWithAge
+        } else { // those that have died
+            const personDeadAge = element.yearOfDeath - element.yearOfBirth; // death year minus birth year
+            const objectForPersonDead = { // create an object for each person that is dead
+                name: element.name, // use the same property and value from the array that was sent to the map function
+                yearOfBirth: element.yearOfBirth,//use the same property and value from the array that was sent to the map function
+                yearOfDeath: element.yearOfDeath,//use the same property and value from the array that was sent to the map function
+                age: personDeadAge, // this is a new property that was not in the array from the map function. the value is from
+                // the const holding the age
+            };
+            return objectForPersonDead; // new object sent to newObjectWithAge
+        };
+    });
+
+    //return newObjectWithAge; // if it was to only display the new objects with ages, then this would end right here but 
+    // we need to sort the ages. below is the sort part.
+
+    const sortByAge = [...newObjectWithAge].sort((initialPerson, nextPerson) => { // newObjectWithAge holds the array of new
+        // objects that have the age property/value. used ...spread syntax so the unsorted array is not mutated. this way 
+        // i can check the before and after the sort to make sure it looks ok. if ...spread syntax is not used, then the
+        // sort happens on the original array and it will be difficult to compare the before and after.
+        if (initialPerson.age > nextPerson.age) {
+            return -1; // bubbles up the rank
+        } else {
+            return 1; // bubbles down the rank
+        };
+    });
+
+    console.log(`original array with ages: ${JSON.stringify(newObjectWithAge)}`); // shows the original order with ages
+    return sortByAge;
+    
+};
+
+const returnedByFindTheOldest = findTheOldestTest(peopleTest4);
+
+console.log(`array ordered by age: ${JSON.stringify(returnedByFindTheOldest)}`);
+
 
 // Do not edit below this line
 // module.exports = findTheOldest; // uncomment this line when you run the jest test
