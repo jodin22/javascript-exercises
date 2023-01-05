@@ -461,7 +461,8 @@ const findTheOldest = function(listOfPeople) {
     });
 
     console.log(`original array with ages: ${JSON.stringify(newObjectWithAge)}`); // shows the original order with ages
-    
+    console.log(`sorted by age: ${JSON.stringify(sortByAge)}`); // shows the array now sorted by age
+
     return sortByAge[0]; // you need the [0] bc that will give you the first object in the array. without the [0], then 
     // instead of a single object being returned, you will get the list of objects meaning the array holding all the new 
     // objects with the ages.
