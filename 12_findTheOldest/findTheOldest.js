@@ -5,10 +5,10 @@ const findTheOldest = function() {
 */
 
 // refer to /home/jodin22sams/repos/JavaScript30/04 - Array Cardio Day 1/index-START.html and 07 - Array Cardio Day 2.
-// these have similar ex's of using the date function and reduce
+// these have similar ex's of using the date function and an array of objects.
 
 // SEE BELOW AT THE BLOCK STARTING AT LINE 305. THIS IS WHERE THE HW STARTS TO COME TOGETHER. BEFORE 305, I WAS WORKING ON ONE
-// PIECE AT A TIME. LINE 387 TO 469 IS THE HW ANSWER WHICH PUTS IT ALL IN A FUNCTION.
+// PIECE AT A TIME. LINE 387 TO 471 IS THE HW ANSWER WHICH PUTS IT ALL IN A FUNCTION.
 
 
 
@@ -385,7 +385,8 @@ console.log(`sorted by age: ${JSON.stringify(sortByOldest)}`); // sorted by olde
 
 
 // the below block is putting it altogether in a function. re-using lines 303 to 384 with some editing so it doesn't look
-// as messy.
+// as messy. 303 to 384 has a lot more comments on how you got to the answer. 390 to the end is just a stream lined version 
+// of the work from 303 to 384.
 
 const peopleTest4 = [
     {
@@ -460,6 +461,7 @@ const findTheOldest = function(listOfPeople) {
     });
 
     console.log(`original array with ages: ${JSON.stringify(newObjectWithAge)}`); // shows the original order with ages
+    
     return sortByAge[0]; // you need the [0] bc that will give you the first object in the array. without the [0], then 
     // instead of a single object being returned, you will get the list of objects meaning the array holding all the new 
     // objects with the ages.
