@@ -7,6 +7,9 @@ const findTheOldest = function() {
 // refer to /home/jodin22sams/repos/JavaScript30/04 - Array Cardio Day 1/index-START.html and 07 - Array Cardio Day 2.
 // these have similar ex's of using the date function and reduce
 
+// SEE BELOW AT THE BLOCK STARTING AT LINE 305. THIS IS WHERE THE HW STARTS TO COME TOGETHER. BEFORE 305, HW WAS WORKING ON ONE
+// PIECE AT A TIME.
+
 const findTheOldestTest = function() {  
 
 };
@@ -247,7 +250,7 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Ray",
         yearOfBirth: 1962,
-        // yearOfDeath: 2011,
+        yearOfDeath: 2011,
     },
     {
         name: "Jane",
@@ -257,7 +260,7 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
     {
         name: "Sam",
         yearOfBirth: 1932,
-        yearOfDeath: 1981,
+        //yearOfDeath: 1981,
     },
     {
         name: "Beth",
@@ -268,11 +271,11 @@ const peopleTest3 = [ // 'finds the oldest person if someone is still living'
 
   console.log(peopleTest3);
 
-// (DON'T DO: refer to 07 - Array Cardio Day 2/index-START.html bc it has ex's of the .some method. first step is to use .some 
+// (DON'T DO THIS: refer to 07 - Array Cardio Day 2/index-START.html bc it has ex's of the .some method. first step is to use .some 
 // and see if any of these have undefined for yearOfDeath. this will show true if anybody is alive. then do the math on 
 // each person to get their age regardless of living or dead.)
 
-// the below block is using map and if test for undefined on yearOfDeath. (DON'T DO: instead use .some to see if any undefined 
+// the below block is using map and if test for undefined on yearOfDeath. (DON'T DO THIS: instead use .some to see if any undefined 
 // exist and then do the math on the age.) Continue using map below to get the oldest no matter who is alive or dead.
 const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
     // if there is an undefined for yearOfDeath, then use the date() and get the the current year. then do math of current year 
@@ -299,7 +302,7 @@ const findOldestIfStillLiving = peopleTest3.map((element, index, array) => {
 console.log(findOldestIfStillLiving); // this array is showing each person in a sentence. it shows their alive/death status and
 // age.
 
-
+// THIS IS WHERE THE HW ANSWER COMES TOGETHER. ABOVE THIS BLOCK WAS DOING SMALL PARTS AT A TIME TO WORK THROUGH THE PROBLEM.
 // the block below is using peopleTest3 as the original array. then the map creates new objects in a new array that uses all 
 // the same info from the original array but adds an age member/value.  so the finished map will have {name, yearOfBirth,
 // yearOfDeath, age}. some of the elements will not have yearOfDeath since some of them are still alive.
@@ -341,9 +344,10 @@ const findOldestRegardless = peopleTest3.map((element, index, array) => {
             name: element.name, // the same member name and get the values from the original array using element.whatever
             yearOfBirth: element.yearOfBirth, // the same member name and get the values from the original array using element.whatever
             yearOfDeath: element.yearOfDeath, // the same member name and get the values from the original array using element.whatever
-            age: personDeadAge,  // new member and value. see lines 326 to 333 for the explanation on the new member/value.
+            age: personDeadAge,  // new member and value. see lines 326 to 336 for the explanation on the new member/value.
         };
-        return personDead;
+        return personDead; 
+        // see above lines at 326 to 336 on how each new object is created.
     };
 });
 
@@ -358,33 +362,13 @@ console.log(findOldestRegardless); // shows the array again.
 // now that you have an age on everybody regardless of yearOfDeath being undefined or not, you can sort on the new array, 
 // findOldestRegardless and find the oldest person that way.
 
+// the above block of lines 305 to 356 show that the peopleTest3 array of objects are now ready to be sorted to find the oldest
+// regardless of whether a person is alive or dead. the peopleTest3 array started with each object only having name, birth and 
+// sometimes death. now it has the same property/values but with a new one for age. now that there is an age, we can use the 
+// sort method and compare initial to next and whichever is older will bubble up the rank.
 
-const peopleTest4 = [
-    {
-        name: "Carly",
-        yearOfBirth: 1066,
-    },
-    {
-        name: "Ray",
-        yearOfBirth: 1962,
-        yearOfDeath: 2011,
-    },
-    {
-        name: "Jane",
-        yearOfBirth: 1912,
-        yearOfDeath: 1941,
-    },
-    {
-        name: "Sam",
-        yearOfBirth: 1932,
-        //yearOfDeath: 1981,
-    },
-    {
-        name: "Beth",
-        yearOfBirth: 1991,
-        //yearOfDeath: 2023,
-    },
-];
+// START THE SORT METHOD BELOW.
+
 
 //  right now, the below block at 393 has errors 
 // bc it hasn't used any initial or next. it is just trying to do the if test without receiving the initial and next.
