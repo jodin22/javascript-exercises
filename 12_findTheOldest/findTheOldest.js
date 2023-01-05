@@ -7,7 +7,7 @@ const findTheOldest = function() {
 // refer to /home/jodin22sams/repos/JavaScript30/04 - Array Cardio Day 1/index-START.html and 07 - Array Cardio Day 2.
 // these have similar ex's of using the date function and reduce
 
-// SEE BELOW AT THE BLOCK STARTING AT LINE 305. THIS IS WHERE THE HW STARTS TO COME TOGETHER. BEFORE 305, HW WAS WORKING ON ONE
+// SEE BELOW AT THE BLOCK STARTING AT LINE 305. THIS IS WHERE THE HW STARTS TO COME TOGETHER. BEFORE 305, I WAS WORKING ON ONE
 // PIECE AT A TIME. LINE 387 TO 469 IS THE HW ANSWER WHICH PUTS IT ALL IN A FUNCTION.
 
 
@@ -418,7 +418,7 @@ const peopleTest4 = [
 
 console.log(`original array: ${JSON.stringify(peopleTest4)}`); // need stringify or else everything appears as [object Object]
 
-const findTheOldestTest = function(listOfPeople) {
+const findTheOldest = function(listOfPeople) {
 
     const newObjectWithAge = listOfPeople.map((element, index, array) => {
         if (element.yearOfDeath === undefined) { // those still alive have no year of death in the object
@@ -460,13 +460,15 @@ const findTheOldestTest = function(listOfPeople) {
     });
 
     console.log(`original array with ages: ${JSON.stringify(newObjectWithAge)}`); // shows the original order with ages
-    return sortByAge;
+    return sortByAge[0]; // you need the [0] bc that will give you the first object in the array. without the [0], then 
+    // instead of a single object being returned, you will get the list of objects meaning the array holding all the new 
+    // objects with the ages.
     
 };
 
-const returnedByFindTheOldest = findTheOldestTest(peopleTest4);
+const returnedByFindTheOldest = findTheOldest(peopleTest4);
 
-console.log(`array ordered by age: ${JSON.stringify(returnedByFindTheOldest)}`);
+console.log(`oldest person: ${JSON.stringify(returnedByFindTheOldest)}`);
 
 
 // Do not edit below this line
